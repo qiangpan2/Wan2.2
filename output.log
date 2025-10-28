@@ -1,0 +1,549 @@
+W1028 12:45:34.991000 132116 site-packages/torch/distributed/run.py:766] 
+W1028 12:45:34.991000 132116 site-packages/torch/distributed/run.py:766] *****************************************
+W1028 12:45:34.991000 132116 site-packages/torch/distributed/run.py:766] Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+W1028 12:45:34.991000 132116 site-packages/torch/distributed/run.py:766] *****************************************
+[2025-10-28 12:45:56,426] INFO: offload_model is not specified, set to False.
+[2025-10-28 12:45:56,428] INFO: Generation job args: Namespace(task='i2v-A14B', size='1280*720', frame_num=81, ckpt_dir='./Wan2.2-I2V-A14B', offload_model=False, ulysses_size=8, t5_fsdp=True, t5_cpu=False, dit_fsdp=True, save_file=None, prompt="Summer beach vacation style, a white cat wearing sunglasses sits on a surfboard. The fluffy-furred feline gazes directly at the camera with a relaxed expression. Blurred beach scenery forms the background featuring crystal-clear waters, distant green hills, and a blue sky dotted with white clouds. The cat assumes a naturally relaxed posture, as if savoring the sea breeze and warm sunlight. A close-up shot highlights the feline's intricate details and the refreshing atmosphere of the seaside.", use_prompt_extend=False, prompt_extend_method='local_qwen', prompt_extend_model=None, prompt_extend_target_lang='zh', base_seed=3930461382358264763, image='examples/i2v_input.JPG', sample_solver='unipc', sample_steps=40, sample_shift=5.0, sample_guide_scale=(3.5, 3.5), convert_model_dtype=False, src_root_path=None, refert_num=77, replace_flag=False, use_relighting_lora=False, num_clip=None, audio=None, enable_tts=False, tts_prompt_audio=None, tts_prompt_text=None, tts_text=None, pose_video=None, start_from_ref=False, infer_frames=80)
+[2025-10-28 12:45:56,428] INFO: Generation model config: {'__name__': 'Config: Wan I2V A14B', 't5_model': 'umt5_xxl', 't5_dtype': torch.bfloat16, 'text_len': 512, 'param_dtype': torch.bfloat16, 'num_train_timesteps': 1000, 'sample_fps': 16, 'sample_neg_prompt': '色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走', 'frame_num': 81, 't5_checkpoint': 'models_t5_umt5-xxl-enc-bf16.pth', 't5_tokenizer': 'google/umt5-xxl', 'vae_checkpoint': 'Wan2.1_VAE.pth', 'vae_stride': (4, 8, 8), 'patch_size': (1, 2, 2), 'dim': 5120, 'ffn_dim': 13824, 'freq_dim': 256, 'num_heads': 40, 'num_layers': 40, 'window_size': (-1, -1), 'qk_norm': True, 'cross_attn_norm': True, 'eps': 1e-06, 'low_noise_checkpoint': 'low_noise_model', 'high_noise_checkpoint': 'high_noise_model', 'sample_shift': 5.0, 'sample_steps': 40, 'boundary': 0.9, 'sample_guide_scale': (3.5, 3.5)}
+
+cse-ai-3:132210:132210 [0] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/init.cc:157 NCCL WARN NUMA auto balancing enabled which can lead to variability in the RCCL performance! Disable by "sudo sysctl kernel.numa_balancing=0"
+cse-ai-3:132210:132210 [0] NCCL INFO Kernel version: 6.8.0-79-generic
+cse-ai-3:132210:132210 [0] NCCL INFO Bootstrap : Using ens13f0:10.67.88.43<0>
+cse-ai-3:132210:132210 [0] NCCL INFO ROCr version 1.15
+cse-ai-3:132210:132210 [0] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+
+cse-ai-3:132210:132210 [0] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/init.cc:157 NCCL WARN NUMA auto balancing enabled which can lead to variability in the RCCL performance! Disable by "sudo sysctl kernel.numa_balancing=0"
+cse-ai-3:132210:132210 [0] NCCL INFO Kernel version: 6.8.0-79-generic
+cse-ai-3:132210:132210 [0] NCCL INFO RCCL version : 2.22.3-HEAD:7d8d67c
+HIP version  : 6.4.43484-123eb5128
+ROCm version : 6.4.4.0-129-e7d83f5
+Hostname     : cse-ai-3
+Librccl path : /opt/rocm-6.4.4/lib/librccl.so.1
+cse-ai-3:132216:132216 [6] NCCL INFO ROCr version 1.15
+cse-ai-3:132216:132216 [6] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+cse-ai-3:132214:132214 [4] NCCL INFO ROCr version 1.15
+
+cse-ai-3:132216:132216 [6] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/init.cc:157 NCCL WARN NUMA auto balancing enabled which can lead to variability in the RCCL performance! Disable by "sudo sysctl kernel.numa_balancing=0"
+cse-ai-3:132214:132214 [4] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+cse-ai-3:132216:132216 [6] NCCL INFO Kernel version: 6.8.0-79-generic
+
+cse-ai-3:132214:132214 [4] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/init.cc:157 NCCL WARN NUMA auto balancing enabled which can lead to variability in the RCCL performance! Disable by "sudo sysctl kernel.numa_balancing=0"
+cse-ai-3:132214:132214 [4] NCCL INFO Kernel version: 6.8.0-79-generic
+cse-ai-3:132215:132215 [5] NCCL INFO ROCr version 1.15
+cse-ai-3:132215:132215 [5] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+cse-ai-3:132213:132213 [3] NCCL INFO ROCr version 1.15
+
+cse-ai-3:132215:132215 [5] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/init.cc:157 NCCL WARN NUMA auto balancing enabled which can lead to variability in the RCCL performance! Disable by "sudo sysctl kernel.numa_balancing=0"
+cse-ai-3:132217:132217 [7] NCCL INFO ROCr version 1.15
+cse-ai-3:132213:132213 [3] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+cse-ai-3:132217:132217 [7] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+cse-ai-3:132210:132210 [0] NCCL INFO Comm config Blocking set to 1
+cse-ai-3:132215:132215 [5] NCCL INFO Kernel version: 6.8.0-79-generic
+
+cse-ai-3:132213:132213 [3] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/init.cc:157 NCCL WARN NUMA auto balancing enabled which can lead to variability in the RCCL performance! Disable by "sudo sysctl kernel.numa_balancing=0"
+
+cse-ai-3:132217:132217 [7] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/init.cc:157 NCCL WARN NUMA auto balancing enabled which can lead to variability in the RCCL performance! Disable by "sudo sysctl kernel.numa_balancing=0"
+cse-ai-3:132213:132213 [3] NCCL INFO Kernel version: 6.8.0-79-generic
+cse-ai-3:132217:132217 [7] NCCL INFO Kernel version: 6.8.0-79-generic
+cse-ai-3:132214:132214 [4] NCCL INFO Bootstrap : Using ens13f0:10.67.88.43<0>
+cse-ai-3:132213:132213 [3] NCCL INFO Bootstrap : Using ens13f0:10.67.88.43<0>
+cse-ai-3:132216:132216 [6] NCCL INFO Bootstrap : Using ens13f0:10.67.88.43<0>
+cse-ai-3:132215:132215 [5] NCCL INFO Bootstrap : Using ens13f0:10.67.88.43<0>
+cse-ai-3:132217:132217 [7] NCCL INFO Bootstrap : Using ens13f0:10.67.88.43<0>
+cse-ai-3:132214:132214 [4] NCCL INFO RCCL version : 2.22.3-HEAD:7d8d67c
+HIP version  : 6.4.43484-123eb5128
+ROCm version : 6.4.4.0-129-e7d83f5
+Hostname     : cse-ai-3
+Librccl path : /opt/rocm-6.4.4/lib/librccl.so.1
+cse-ai-3:132213:132213 [3] NCCL INFO RCCL version : 2.22.3-HEAD:7d8d67c
+HIP version  : 6.4.43484-123eb5128
+ROCm version : 6.4.4.0-129-e7d83f5
+Hostname     : cse-ai-3
+Librccl path : /opt/rocm-6.4.4/lib/librccl.so.1
+cse-ai-3:132216:132216 [6] NCCL INFO RCCL version : 2.22.3-HEAD:7d8d67c
+HIP version  : 6.4.43484-123eb5128
+ROCm version : 6.4.4.0-129-e7d83f5
+Hostname     : cse-ai-3
+Librccl path : /opt/rocm-6.4.4/lib/librccl.so.1
+cse-ai-3:132215:132215 [5] NCCL INFO RCCL version : 2.22.3-HEAD:7d8d67c
+HIP version  : 6.4.43484-123eb5128
+ROCm version : 6.4.4.0-129-e7d83f5
+Hostname     : cse-ai-3
+Librccl path : /opt/rocm-6.4.4/lib/librccl.so.1
+cse-ai-3:132217:132217 [7] NCCL INFO RCCL version : 2.22.3-HEAD:7d8d67c
+HIP version  : 6.4.43484-123eb5128
+ROCm version : 6.4.4.0-129-e7d83f5
+Hostname     : cse-ai-3
+Librccl path : /opt/rocm-6.4.4/lib/librccl.so.1
+cse-ai-3:132217:132217 [7] NCCL INFO Comm config Blocking set to 1
+cse-ai-3:132213:132213 [3] NCCL INFO Comm config Blocking set to 1
+cse-ai-3:132214:132214 [4] NCCL INFO Comm config Blocking set to 1
+cse-ai-3:132216:132216 [6] NCCL INFO Comm config Blocking set to 1
+cse-ai-3:132215:132215 [5] NCCL INFO Comm config Blocking set to 1
+cse-ai-3:132212:132212 [2] NCCL INFO ROCr version 1.15
+cse-ai-3:132212:132212 [2] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+
+cse-ai-3:132212:132212 [2] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/init.cc:157 NCCL WARN NUMA auto balancing enabled which can lead to variability in the RCCL performance! Disable by "sudo sysctl kernel.numa_balancing=0"
+cse-ai-3:132212:132212 [2] NCCL INFO Kernel version: 6.8.0-79-generic
+cse-ai-3:132212:132212 [2] NCCL INFO Bootstrap : Using ens13f0:10.67.88.43<0>
+cse-ai-3:132212:132212 [2] NCCL INFO RCCL version : 2.22.3-HEAD:7d8d67c
+HIP version  : 6.4.43484-123eb5128
+ROCm version : 6.4.4.0-129-e7d83f5
+Hostname     : cse-ai-3
+Librccl path : /opt/rocm-6.4.4/lib/librccl.so.1
+cse-ai-3:132212:132212 [2] NCCL INFO Comm config Blocking set to 1
+cse-ai-3:132211:132211 [1] NCCL INFO ROCr version 1.15
+cse-ai-3:132211:132211 [1] NCCL INFO Dmabuf feature disabled without NCCL_DMABUF_ENABLE=1
+
+cse-ai-3:132211:132211 [1] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/init.cc:157 NCCL WARN NUMA auto balancing enabled which can lead to variability in the RCCL performance! Disable by "sudo sysctl kernel.numa_balancing=0"
+cse-ai-3:132211:132211 [1] NCCL INFO Kernel version: 6.8.0-79-generic
+cse-ai-3:132211:132211 [1] NCCL INFO Bootstrap : Using ens13f0:10.67.88.43<0>
+cse-ai-3:132211:132211 [1] NCCL INFO RCCL version : 2.22.3-HEAD:7d8d67c
+HIP version  : 6.4.43484-123eb5128
+ROCm version : 6.4.4.0-129-e7d83f5
+Hostname     : cse-ai-3
+Librccl path : /opt/rocm-6.4.4/lib/librccl.so.1
+cse-ai-3:132211:132211 [1] NCCL INFO Comm config Blocking set to 1
+cse-ai-3:132210:132524 [0] NCCL INFO NET/Plugin: Could not find: librccl-net.so. Using internal network plugin.
+cse-ai-3:132214:132528 [4] NCCL INFO NET/Plugin: Could not find: librccl-net.so. Using internal network plugin.
+cse-ai-3:132216:132525 [6] NCCL INFO NET/Plugin: Could not find: librccl-net.so. Using internal network plugin.
+cse-ai-3:132210:132524 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE [RO]; OOB ens13f0:10.67.88.43<0>
+cse-ai-3:132213:132527 [3] NCCL INFO NET/Plugin: Could not find: librccl-net.so. Using internal network plugin.
+cse-ai-3:132217:132526 [7] NCCL INFO NET/Plugin: Could not find: librccl-net.so. Using internal network plugin.
+cse-ai-3:132215:132529 [5] NCCL INFO NET/Plugin: Could not find: librccl-net.so. Using internal network plugin.
+cse-ai-3:132214:132528 [4] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE [RO]; OOB ens13f0:10.67.88.43<0>
+cse-ai-3:132216:132525 [6] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE [RO]; OOB ens13f0:10.67.88.43<0>
+cse-ai-3:132213:132527 [3] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE [RO]; OOB ens13f0:10.67.88.43<0>
+cse-ai-3:132217:132526 [7] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE [RO]; OOB ens13f0:10.67.88.43<0>
+cse-ai-3:132215:132529 [5] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE [RO]; OOB ens13f0:10.67.88.43<0>
+cse-ai-3:132212:132532 [2] NCCL INFO NET/Plugin: Could not find: librccl-net.so. Using internal network plugin.
+cse-ai-3:132212:132532 [2] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE [RO]; OOB ens13f0:10.67.88.43<0>
+cse-ai-3:132211:132535 [1] NCCL INFO NET/Plugin: Could not find: librccl-net.so. Using internal network plugin.
+cse-ai-3:132211:132535 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/RoCE [RO]; OOB ens13f0:10.67.88.43<0>
+cse-ai-3:132210:132524 [0] NCCL INFO Found ib_register_peer_memory_client in /proc/kallsyms
+cse-ai-3:132210:132524 [0] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/transport/net_ib.cc:708 -> 2
+cse-ai-3:132210:132524 [0] NCCL INFO Using network IB
+cse-ai-3:132210:132524 [0] NCCL INFO [node_id = 6; gpu_id = 43393; unique_id = 319256326910999641; location_id = 39424; bdf = 39424; domain = 0; partition = 0], 
+cse-ai-3:132210:132524 [0] NCCL INFO [node_id = 4; gpu_id = 42269; unique_id = 3689048248921765433; location_id = 19200; bdf = 19200; domain = 0; partition = 0], 
+cse-ai-3:132210:132524 [0] NCCL INFO [node_id = 2; gpu_id = 60596; unique_id = 5476188206049771164; location_id = 10496; bdf = 10496; domain = 0; partition = 0], 
+cse-ai-3:132210:132524 [0] NCCL INFO [node_id = 3; gpu_id = 53753; unique_id = 5604899547563945432; location_id = 14848; bdf = 14848; domain = 0; partition = 0], 
+cse-ai-3:132210:132524 [0] NCCL INFO [node_id = 8; gpu_id = 29080; unique_id = 13369687484617417789; location_id = 47616; bdf = 47616; domain = 0; partition = 0], 
+cse-ai-3:132210:132524 [0] NCCL INFO [node_id = 9; gpu_id = 38333; unique_id = 14148523552941532254; location_id = 51712; bdf = 51712; domain = 0; partition = 0], 
+cse-ai-3:132210:132524 [0] NCCL INFO [node_id = 7; gpu_id = 48533; unique_id = 15575642878202150181; location_id = 43520; bdf = 43520; domain = 0; partition = 0], 
+cse-ai-3:132210:132524 [0] NCCL INFO [node_id = 5; gpu_id = 26721; unique_id = 17631045384683108618; location_id = 6144; bdf = 6144; domain = 0; partition = 0], 
+cse-ai-3:132210:132524 [0] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132216:132525 [6] NCCL INFO Found ib_register_peer_memory_client in /proc/kallsyms
+cse-ai-3:132216:132525 [6] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/transport/net_ib.cc:708 -> 2
+cse-ai-3:132216:132525 [6] NCCL INFO Using network IB
+cse-ai-3:132214:132528 [4] NCCL INFO Found ib_register_peer_memory_client in /proc/kallsyms
+cse-ai-3:132214:132528 [4] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/transport/net_ib.cc:708 -> 2
+cse-ai-3:132214:132528 [4] NCCL INFO Using network IB
+cse-ai-3:132216:132525 [6] NCCL INFO [node_id = 6; gpu_id = 43393; unique_id = 319256326910999641; location_id = 39424; bdf = 39424; domain = 0; partition = 0], 
+cse-ai-3:132216:132525 [6] NCCL INFO [node_id = 4; gpu_id = 42269; unique_id = 3689048248921765433; location_id = 19200; bdf = 19200; domain = 0; partition = 0], 
+cse-ai-3:132216:132525 [6] NCCL INFO [node_id = 2; gpu_id = 60596; unique_id = 5476188206049771164; location_id = 10496; bdf = 10496; domain = 0; partition = 0], 
+cse-ai-3:132216:132525 [6] NCCL INFO [node_id = 3; gpu_id = 53753; unique_id = 5604899547563945432; location_id = 14848; bdf = 14848; domain = 0; partition = 0], 
+cse-ai-3:132216:132525 [6] NCCL INFO [node_id = 8; gpu_id = 29080; unique_id = 13369687484617417789; location_id = 47616; bdf = 47616; domain = 0; partition = 0], 
+cse-ai-3:132216:132525 [6] NCCL INFO [node_id = 9; gpu_id = 38333; unique_id = 14148523552941532254; location_id = 51712; bdf = 51712; domain = 0; partition = 0], 
+cse-ai-3:132216:132525 [6] NCCL INFO [node_id = 7; gpu_id = 48533; unique_id = 15575642878202150181; location_id = 43520; bdf = 43520; domain = 0; partition = 0], 
+cse-ai-3:132216:132525 [6] NCCL INFO [node_id = 5; gpu_id = 26721; unique_id = 17631045384683108618; location_id = 6144; bdf = 6144; domain = 0; partition = 0], 
+cse-ai-3:132216:132525 [6] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132214:132528 [4] NCCL INFO [node_id = 6; gpu_id = 43393; unique_id = 319256326910999641; location_id = 39424; bdf = 39424; domain = 0; partition = 0], 
+cse-ai-3:132214:132528 [4] NCCL INFO [node_id = 4; gpu_id = 42269; unique_id = 3689048248921765433; location_id = 19200; bdf = 19200; domain = 0; partition = 0], 
+cse-ai-3:132214:132528 [4] NCCL INFO [node_id = 2; gpu_id = 60596; unique_id = 5476188206049771164; location_id = 10496; bdf = 10496; domain = 0; partition = 0], 
+cse-ai-3:132214:132528 [4] NCCL INFO [node_id = 3; gpu_id = 53753; unique_id = 5604899547563945432; location_id = 14848; bdf = 14848; domain = 0; partition = 0], 
+cse-ai-3:132214:132528 [4] NCCL INFO [node_id = 8; gpu_id = 29080; unique_id = 13369687484617417789; location_id = 47616; bdf = 47616; domain = 0; partition = 0], 
+cse-ai-3:132214:132528 [4] NCCL INFO [node_id = 9; gpu_id = 38333; unique_id = 14148523552941532254; location_id = 51712; bdf = 51712; domain = 0; partition = 0], 
+cse-ai-3:132214:132528 [4] NCCL INFO [node_id = 7; gpu_id = 48533; unique_id = 15575642878202150181; location_id = 43520; bdf = 43520; domain = 0; partition = 0], 
+cse-ai-3:132214:132528 [4] NCCL INFO [node_id = 5; gpu_id = 26721; unique_id = 17631045384683108618; location_id = 6144; bdf = 6144; domain = 0; partition = 0], 
+cse-ai-3:132214:132528 [4] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132215:132529 [5] NCCL INFO Found ib_register_peer_memory_client in /proc/kallsyms
+cse-ai-3:132215:132529 [5] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/transport/net_ib.cc:708 -> 2
+cse-ai-3:132215:132529 [5] NCCL INFO Using network IB
+cse-ai-3:132217:132526 [7] NCCL INFO Found ib_register_peer_memory_client in /proc/kallsyms
+cse-ai-3:132217:132526 [7] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/transport/net_ib.cc:708 -> 2
+cse-ai-3:132217:132526 [7] NCCL INFO Using network IB
+cse-ai-3:132215:132529 [5] NCCL INFO [node_id = 6; gpu_id = 43393; unique_id = 319256326910999641; location_id = 39424; bdf = 39424; domain = 0; partition = 0], 
+cse-ai-3:132215:132529 [5] NCCL INFO [node_id = 4; gpu_id = 42269; unique_id = 3689048248921765433; location_id = 19200; bdf = 19200; domain = 0; partition = 0], 
+cse-ai-3:132215:132529 [5] NCCL INFO [node_id = 2; gpu_id = 60596; unique_id = 5476188206049771164; location_id = 10496; bdf = 10496; domain = 0; partition = 0], 
+cse-ai-3:132215:132529 [5] NCCL INFO [node_id = 3; gpu_id = 53753; unique_id = 5604899547563945432; location_id = 14848; bdf = 14848; domain = 0; partition = 0], 
+cse-ai-3:132215:132529 [5] NCCL INFO [node_id = 8; gpu_id = 29080; unique_id = 13369687484617417789; location_id = 47616; bdf = 47616; domain = 0; partition = 0], 
+cse-ai-3:132215:132529 [5] NCCL INFO [node_id = 9; gpu_id = 38333; unique_id = 14148523552941532254; location_id = 51712; bdf = 51712; domain = 0; partition = 0], 
+cse-ai-3:132215:132529 [5] NCCL INFO [node_id = 7; gpu_id = 48533; unique_id = 15575642878202150181; location_id = 43520; bdf = 43520; domain = 0; partition = 0], 
+cse-ai-3:132215:132529 [5] NCCL INFO [node_id = 5; gpu_id = 26721; unique_id = 17631045384683108618; location_id = 6144; bdf = 6144; domain = 0; partition = 0], 
+cse-ai-3:132213:132527 [3] NCCL INFO Found ib_register_peer_memory_client in /proc/kallsyms
+cse-ai-3:132213:132527 [3] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/transport/net_ib.cc:708 -> 2
+cse-ai-3:132213:132527 [3] NCCL INFO Using network IB
+cse-ai-3:132217:132526 [7] NCCL INFO [node_id = 6; gpu_id = 43393; unique_id = 319256326910999641; location_id = 39424; bdf = 39424; domain = 0; partition = 0], 
+cse-ai-3:132217:132526 [7] NCCL INFO [node_id = 4; gpu_id = 42269; unique_id = 3689048248921765433; location_id = 19200; bdf = 19200; domain = 0; partition = 0], 
+cse-ai-3:132217:132526 [7] NCCL INFO [node_id = 2; gpu_id = 60596; unique_id = 5476188206049771164; location_id = 10496; bdf = 10496; domain = 0; partition = 0], 
+cse-ai-3:132217:132526 [7] NCCL INFO [node_id = 3; gpu_id = 53753; unique_id = 5604899547563945432; location_id = 14848; bdf = 14848; domain = 0; partition = 0], 
+cse-ai-3:132217:132526 [7] NCCL INFO [node_id = 8; gpu_id = 29080; unique_id = 13369687484617417789; location_id = 47616; bdf = 47616; domain = 0; partition = 0], 
+cse-ai-3:132217:132526 [7] NCCL INFO [node_id = 9; gpu_id = 38333; unique_id = 14148523552941532254; location_id = 51712; bdf = 51712; domain = 0; partition = 0], 
+cse-ai-3:132217:132526 [7] NCCL INFO [node_id = 7; gpu_id = 48533; unique_id = 15575642878202150181; location_id = 43520; bdf = 43520; domain = 0; partition = 0], 
+cse-ai-3:132217:132526 [7] NCCL INFO [node_id = 5; gpu_id = 26721; unique_id = 17631045384683108618; location_id = 6144; bdf = 6144; domain = 0; partition = 0], 
+cse-ai-3:132215:132529 [5] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132217:132526 [7] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132213:132527 [3] NCCL INFO [node_id = 6; gpu_id = 43393; unique_id = 319256326910999641; location_id = 39424; bdf = 39424; domain = 0; partition = 0], 
+cse-ai-3:132213:132527 [3] NCCL INFO [node_id = 4; gpu_id = 42269; unique_id = 3689048248921765433; location_id = 19200; bdf = 19200; domain = 0; partition = 0], 
+cse-ai-3:132213:132527 [3] NCCL INFO [node_id = 2; gpu_id = 60596; unique_id = 5476188206049771164; location_id = 10496; bdf = 10496; domain = 0; partition = 0], 
+cse-ai-3:132213:132527 [3] NCCL INFO [node_id = 3; gpu_id = 53753; unique_id = 5604899547563945432; location_id = 14848; bdf = 14848; domain = 0; partition = 0], 
+cse-ai-3:132213:132527 [3] NCCL INFO [node_id = 8; gpu_id = 29080; unique_id = 13369687484617417789; location_id = 47616; bdf = 47616; domain = 0; partition = 0], 
+cse-ai-3:132213:132527 [3] NCCL INFO [node_id = 9; gpu_id = 38333; unique_id = 14148523552941532254; location_id = 51712; bdf = 51712; domain = 0; partition = 0], 
+cse-ai-3:132213:132527 [3] NCCL INFO [node_id = 7; gpu_id = 48533; unique_id = 15575642878202150181; location_id = 43520; bdf = 43520; domain = 0; partition = 0], 
+cse-ai-3:132213:132527 [3] NCCL INFO [node_id = 5; gpu_id = 26721; unique_id = 17631045384683108618; location_id = 6144; bdf = 6144; domain = 0; partition = 0], 
+cse-ai-3:132213:132527 [3] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132212:132532 [2] NCCL INFO Found ib_register_peer_memory_client in /proc/kallsyms
+cse-ai-3:132212:132532 [2] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/transport/net_ib.cc:708 -> 2
+cse-ai-3:132212:132532 [2] NCCL INFO Using network IB
+cse-ai-3:132212:132532 [2] NCCL INFO [node_id = 6; gpu_id = 43393; unique_id = 319256326910999641; location_id = 39424; bdf = 39424; domain = 0; partition = 0], 
+cse-ai-3:132212:132532 [2] NCCL INFO [node_id = 4; gpu_id = 42269; unique_id = 3689048248921765433; location_id = 19200; bdf = 19200; domain = 0; partition = 0], 
+cse-ai-3:132212:132532 [2] NCCL INFO [node_id = 2; gpu_id = 60596; unique_id = 5476188206049771164; location_id = 10496; bdf = 10496; domain = 0; partition = 0], 
+cse-ai-3:132212:132532 [2] NCCL INFO [node_id = 3; gpu_id = 53753; unique_id = 5604899547563945432; location_id = 14848; bdf = 14848; domain = 0; partition = 0], 
+cse-ai-3:132212:132532 [2] NCCL INFO [node_id = 8; gpu_id = 29080; unique_id = 13369687484617417789; location_id = 47616; bdf = 47616; domain = 0; partition = 0], 
+cse-ai-3:132212:132532 [2] NCCL INFO [node_id = 9; gpu_id = 38333; unique_id = 14148523552941532254; location_id = 51712; bdf = 51712; domain = 0; partition = 0], 
+cse-ai-3:132212:132532 [2] NCCL INFO [node_id = 7; gpu_id = 48533; unique_id = 15575642878202150181; location_id = 43520; bdf = 43520; domain = 0; partition = 0], 
+cse-ai-3:132212:132532 [2] NCCL INFO [node_id = 5; gpu_id = 26721; unique_id = 17631045384683108618; location_id = 6144; bdf = 6144; domain = 0; partition = 0], 
+cse-ai-3:132212:132532 [2] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132211:132535 [1] NCCL INFO Found ib_register_peer_memory_client in /proc/kallsyms
+cse-ai-3:132211:132535 [1] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/transport/net_ib.cc:708 -> 2
+cse-ai-3:132211:132535 [1] NCCL INFO Using network IB
+cse-ai-3:132211:132535 [1] NCCL INFO [node_id = 6; gpu_id = 43393; unique_id = 319256326910999641; location_id = 39424; bdf = 39424; domain = 0; partition = 0], 
+cse-ai-3:132211:132535 [1] NCCL INFO [node_id = 4; gpu_id = 42269; unique_id = 3689048248921765433; location_id = 19200; bdf = 19200; domain = 0; partition = 0], 
+cse-ai-3:132211:132535 [1] NCCL INFO [node_id = 2; gpu_id = 60596; unique_id = 5476188206049771164; location_id = 10496; bdf = 10496; domain = 0; partition = 0], 
+cse-ai-3:132211:132535 [1] NCCL INFO [node_id = 3; gpu_id = 53753; unique_id = 5604899547563945432; location_id = 14848; bdf = 14848; domain = 0; partition = 0], 
+cse-ai-3:132211:132535 [1] NCCL INFO [node_id = 8; gpu_id = 29080; unique_id = 13369687484617417789; location_id = 47616; bdf = 47616; domain = 0; partition = 0], 
+cse-ai-3:132211:132535 [1] NCCL INFO [node_id = 9; gpu_id = 38333; unique_id = 14148523552941532254; location_id = 51712; bdf = 51712; domain = 0; partition = 0], 
+cse-ai-3:132211:132535 [1] NCCL INFO [node_id = 7; gpu_id = 48533; unique_id = 15575642878202150181; location_id = 43520; bdf = 43520; domain = 0; partition = 0], 
+cse-ai-3:132211:132535 [1] NCCL INFO [node_id = 5; gpu_id = 26721; unique_id = 17631045384683108618; location_id = 6144; bdf = 6144; domain = 0; partition = 0], 
+cse-ai-3:132211:132535 [1] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132213:132527 [3] NCCL INFO ncclCommInitRank comm 0x603e14cc7ab0 rank 3 nranks 8 cudaDev 3 nvmlDev 0 busId 18000 commId 0x70cfa9a86485d7a1 - Init START
+cse-ai-3:132212:132532 [2] NCCL INFO ncclCommInitRank comm 0x579d17979190 rank 2 nranks 8 cudaDev 2 nvmlDev 3 busId 4b000 commId 0x70cfa9a86485d7a1 - Init START
+cse-ai-3:132211:132535 [1] NCCL INFO ncclCommInitRank comm 0x6148a4e1c980 rank 1 nranks 8 cudaDev 1 nvmlDev 2 busId 3a000 commId 0x70cfa9a86485d7a1 - Init START
+cse-ai-3:132214:132528 [4] NCCL INFO ncclCommInitRank comm 0x55fe538036a0 rank 4 nranks 8 cudaDev 4 nvmlDev 4 busId 9a000 commId 0x70cfa9a86485d7a1 - Init START
+cse-ai-3:132216:132525 [6] NCCL INFO ncclCommInitRank comm 0x63a4b63a0bd0 rank 6 nranks 8 cudaDev 6 nvmlDev 6 busId ba000 commId 0x70cfa9a86485d7a1 - Init START
+cse-ai-3:132217:132526 [7] NCCL INFO ncclCommInitRank comm 0x5f2caee9ff80 rank 7 nranks 8 cudaDev 7 nvmlDev 7 busId ca000 commId 0x70cfa9a86485d7a1 - Init START
+cse-ai-3:132215:132529 [5] NCCL INFO ncclCommInitRank comm 0x5c9f5e29bd50 rank 5 nranks 8 cudaDev 5 nvmlDev 5 busId aa000 commId 0x70cfa9a86485d7a1 - Init START
+cse-ai-3:132210:132524 [0] NCCL INFO ncclCommInitRank comm 0x5a8ad08ecbc0 rank 0 nranks 8 cudaDev 0 nvmlDev 1 busId 29000 commId 0x70cfa9a86485d7a1 - Init START
+cse-ai-3:132214:132528 [4] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132216:132525 [6] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132210:132524 [0] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132215:132529 [5] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132211:132535 [1] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132212:132532 [2] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132217:132526 [7] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132213:132527 [3] NCCL INFO initialized internal alternative rsmi functionality
+cse-ai-3:132214:132528 [4] NCCL INFO Setting affinity for GPU 4 to ffffffff,ffff0000,00000000,ffffffff,ffff0000,00000000
+cse-ai-3:132210:132524 [0] NCCL INFO Setting affinity for GPU 1 to ffff,ffffffff,00000000,0000ffff,ffffffff
+cse-ai-3:132216:132525 [6] NCCL INFO Setting affinity for GPU 6 to ffffffff,ffff0000,00000000,ffffffff,ffff0000,00000000
+cse-ai-3:132213:132527 [3] NCCL INFO Setting affinity for GPU 0 to ffff,ffffffff,00000000,0000ffff,ffffffff
+cse-ai-3:132212:132532 [2] NCCL INFO Setting affinity for GPU 3 to ffff,ffffffff,00000000,0000ffff,ffffffff
+cse-ai-3:132211:132535 [1] NCCL INFO Setting affinity for GPU 2 to ffff,ffffffff,00000000,0000ffff,ffffffff
+cse-ai-3:132215:132529 [5] NCCL INFO Setting affinity for GPU 5 to ffffffff,ffff0000,00000000,ffffffff,ffff0000,00000000
+cse-ai-3:132217:132526 [7] NCCL INFO Setting affinity for GPU 7 to ffffffff,ffff0000,00000000,ffffffff,ffff0000,00000000
+cse-ai-3:132216:132525 [6] NCCL INFO comm 0x63a4b63a0bd0 rank 6 nRanks 8 nNodes 1 localRanks 8 localRank 6 MNNVL 0
+cse-ai-3:132214:132528 [4] NCCL INFO comm 0x55fe538036a0 rank 4 nRanks 8 nNodes 1 localRanks 8 localRank 4 MNNVL 0
+cse-ai-3:132213:132527 [3] NCCL INFO comm 0x603e14cc7ab0 rank 3 nRanks 8 nNodes 1 localRanks 8 localRank 3 MNNVL 0
+cse-ai-3:132215:132529 [5] NCCL INFO comm 0x5c9f5e29bd50 rank 5 nRanks 8 nNodes 1 localRanks 8 localRank 5 MNNVL 0
+cse-ai-3:132212:132532 [2] NCCL INFO comm 0x579d17979190 rank 2 nRanks 8 nNodes 1 localRanks 8 localRank 2 MNNVL 0
+cse-ai-3:132211:132535 [1] NCCL INFO comm 0x6148a4e1c980 rank 1 nRanks 8 nNodes 1 localRanks 8 localRank 1 MNNVL 0
+cse-ai-3:132216:132525 [6] NCCL INFO Trees [0] 7/-1/-1->6->5 [1] 7/-1/-1->6->5 comm 0x63a4b63a0bd0 nRanks 08 busId ba000
+cse-ai-3:132214:132528 [4] NCCL INFO Trees [0] 5/-1/-1->4->3 [1] 5/-1/-1->4->3 comm 0x55fe538036a0 nRanks 08 busId 9a000
+cse-ai-3:132210:132524 [0] NCCL INFO comm 0x5a8ad08ecbc0 rank 0 nRanks 8 nNodes 1 localRanks 8 localRank 0 MNNVL 0
+cse-ai-3:132213:132527 [3] NCCL INFO Trees [0] 4/-1/-1->3->2 [1] 4/-1/-1->3->2 comm 0x603e14cc7ab0 nRanks 08 busId 18000
+cse-ai-3:132217:132526 [7] NCCL INFO comm 0x5f2caee9ff80 rank 7 nRanks 8 nNodes 1 localRanks 8 localRank 7 MNNVL 0
+cse-ai-3:132216:132525 [6] NCCL INFO P2P Chunksize set to 131072
+cse-ai-3:132212:132532 [2] NCCL INFO Trees [0] 3/-1/-1->2->1 [1] 3/-1/-1->2->1 comm 0x579d17979190 nRanks 08 busId 4b000
+cse-ai-3:132214:132528 [4] NCCL INFO P2P Chunksize set to 131072
+cse-ai-3:132215:132529 [5] NCCL INFO Trees [0] 6/-1/-1->5->4 [1] 6/-1/-1->5->4 comm 0x5c9f5e29bd50 nRanks 08 busId aa000
+cse-ai-3:132211:132535 [1] NCCL INFO Trees [0] 2/-1/-1->1->0 [1] 2/-1/-1->1->0 comm 0x6148a4e1c980 nRanks 08 busId 3a000
+cse-ai-3:132213:132527 [3] NCCL INFO P2P Chunksize set to 131072
+cse-ai-3:132210:132524 [0] NCCL INFO Channel 00/02 :    0   1   2   3   4   5   6   7
+cse-ai-3:132212:132532 [2] NCCL INFO P2P Chunksize set to 131072
+cse-ai-3:132211:132535 [1] NCCL INFO P2P Chunksize set to 131072
+cse-ai-3:132215:132529 [5] NCCL INFO P2P Chunksize set to 131072
+cse-ai-3:132210:132524 [0] NCCL INFO Channel 01/02 :    0   1   2   3   4   5   6   7
+cse-ai-3:132217:132526 [7] NCCL INFO Trees [0] -1/-1/-1->7->6 [1] -1/-1/-1->7->6 comm 0x5f2caee9ff80 nRanks 08 busId ca000
+cse-ai-3:132210:132524 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] 1/-1/-1->0->-1 comm 0x5a8ad08ecbc0 nRanks 08 busId 29000
+cse-ai-3:132217:132526 [7] NCCL INFO P2P Chunksize set to 131072
+cse-ai-3:132210:132524 [0] NCCL INFO P2P Chunksize set to 131072
+cse-ai-3:132211:132535 [1] NCCL INFO Channel 00 : 1[3a000] -> 2[4b000] via SHM/direct/direct comm 0x6148a4e1c980 nRanks 08
+cse-ai-3:132213:132527 [3] NCCL INFO Channel 00 : 3[18000] -> 4[9a000] via SHM/direct/direct comm 0x603e14cc7ab0 nRanks 08
+cse-ai-3:132213:132527 [3] NCCL INFO Channel 01 : 3[18000] -> 4[9a000] via SHM/direct/direct comm 0x603e14cc7ab0 nRanks 08
+cse-ai-3:132211:132535 [1] NCCL INFO Channel 01 : 1[3a000] -> 2[4b000] via SHM/direct/direct comm 0x6148a4e1c980 nRanks 08
+cse-ai-3:132212:132532 [2] NCCL INFO Channel 00 : 2[4b000] -> 3[18000] via SHM/direct/direct comm 0x579d17979190 nRanks 08
+cse-ai-3:132212:132532 [2] NCCL INFO Channel 01 : 2[4b000] -> 3[18000] via SHM/direct/direct comm 0x579d17979190 nRanks 08
+cse-ai-3:132214:132528 [4] NCCL INFO Channel 00 : 4[9a000] -> 5[aa000] via SHM/direct/direct comm 0x55fe538036a0 nRanks 08
+cse-ai-3:132214:132528 [4] NCCL INFO Channel 01 : 4[9a000] -> 5[aa000] via SHM/direct/direct comm 0x55fe538036a0 nRanks 08
+cse-ai-3:132210:132524 [0] NCCL INFO Channel 00 : 0[29000] -> 1[3a000] via SHM/direct/direct comm 0x5a8ad08ecbc0 nRanks 08
+cse-ai-3:132215:132529 [5] NCCL INFO Channel 00 : 5[aa000] -> 6[ba000] via SHM/direct/direct comm 0x5c9f5e29bd50 nRanks 08
+cse-ai-3:132210:132524 [0] NCCL INFO Channel 01 : 0[29000] -> 1[3a000] via SHM/direct/direct comm 0x5a8ad08ecbc0 nRanks 08
+cse-ai-3:132215:132529 [5] NCCL INFO Channel 01 : 5[aa000] -> 6[ba000] via SHM/direct/direct comm 0x5c9f5e29bd50 nRanks 08
+cse-ai-3:132216:132525 [6] NCCL INFO Channel 00 : 6[ba000] -> 7[ca000] via SHM/direct/direct comm 0x63a4b63a0bd0 nRanks 08
+cse-ai-3:132216:132525 [6] NCCL INFO Channel 01 : 6[ba000] -> 7[ca000] via SHM/direct/direct comm 0x63a4b63a0bd0 nRanks 08
+cse-ai-3:132217:132526 [7] NCCL INFO Channel 00 : 7[ca000] -> 0[29000] via SHM/direct/direct comm 0x5f2caee9ff80 nRanks 08
+cse-ai-3:132217:132526 [7] NCCL INFO Channel 01 : 7[ca000] -> 0[29000] via SHM/direct/direct comm 0x5f2caee9ff80 nRanks 08
+cse-ai-3:132212:132532 [2] NCCL INFO Connected all rings
+cse-ai-3:132213:132527 [3] NCCL INFO Connected all rings
+cse-ai-3:132211:132535 [1] NCCL INFO Connected all rings
+cse-ai-3:132210:132524 [0] NCCL INFO Connected all rings
+cse-ai-3:132217:132526 [7] NCCL INFO Connected all rings
+cse-ai-3:132217:132526 [7] NCCL INFO Channel 00 : 7[ca000] -> 6[ba000] via SHM/direct/direct comm 0x5f2caee9ff80 nRanks 08
+cse-ai-3:132217:132526 [7] NCCL INFO Channel 01 : 7[ca000] -> 6[ba000] via SHM/direct/direct comm 0x5f2caee9ff80 nRanks 08
+cse-ai-3:132212:132532 [2] NCCL INFO Channel 00 : 2[4b000] -> 1[3a000] via SHM/direct/direct comm 0x579d17979190 nRanks 08
+cse-ai-3:132212:132532 [2] NCCL INFO Channel 01 : 2[4b000] -> 1[3a000] via SHM/direct/direct comm 0x579d17979190 nRanks 08
+cse-ai-3:132211:132535 [1] NCCL INFO Channel 00 : 1[3a000] -> 0[29000] via SHM/direct/direct comm 0x6148a4e1c980 nRanks 08
+cse-ai-3:132216:132525 [6] NCCL INFO Connected all rings
+cse-ai-3:132214:132528 [4] NCCL INFO Connected all rings
+cse-ai-3:132215:132529 [5] NCCL INFO Connected all rings
+cse-ai-3:132211:132535 [1] NCCL INFO Channel 01 : 1[3a000] -> 0[29000] via SHM/direct/direct comm 0x6148a4e1c980 nRanks 08
+cse-ai-3:132213:132527 [3] NCCL INFO Channel 00 : 3[18000] -> 2[4b000] via SHM/direct/direct comm 0x603e14cc7ab0 nRanks 08
+cse-ai-3:132213:132527 [3] NCCL INFO Channel 01 : 3[18000] -> 2[4b000] via SHM/direct/direct comm 0x603e14cc7ab0 nRanks 08
+cse-ai-3:132216:132525 [6] NCCL INFO Channel 00 : 6[ba000] -> 5[aa000] via SHM/direct/direct comm 0x63a4b63a0bd0 nRanks 08
+cse-ai-3:132215:132529 [5] NCCL INFO Channel 00 : 5[aa000] -> 4[9a000] via SHM/direct/direct comm 0x5c9f5e29bd50 nRanks 08
+cse-ai-3:132216:132525 [6] NCCL INFO Channel 01 : 6[ba000] -> 5[aa000] via SHM/direct/direct comm 0x63a4b63a0bd0 nRanks 08
+cse-ai-3:132215:132529 [5] NCCL INFO Channel 01 : 5[aa000] -> 4[9a000] via SHM/direct/direct comm 0x5c9f5e29bd50 nRanks 08
+cse-ai-3:132214:132528 [4] NCCL INFO Channel 00 : 4[9a000] -> 3[18000] via SHM/direct/direct comm 0x55fe538036a0 nRanks 08
+cse-ai-3:132214:132528 [4] NCCL INFO Channel 01 : 4[9a000] -> 3[18000] via SHM/direct/direct comm 0x55fe538036a0 nRanks 08
+cse-ai-3:132210:132524 [0] NCCL INFO Connected all trees
+cse-ai-3:132211:132535 [1] NCCL INFO Connected all trees
+cse-ai-3:132210:132524 [0] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 256 | 256
+cse-ai-3:132210:132524 [0] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 8 p2p channels, 8 p2p channels per peer
+cse-ai-3:132210:132524 [0] NCCL INFO CC Off, Multi-GPU CC Off, workFifoBytes 1048576
+cse-ai-3:132211:132535 [1] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 256 | 256
+cse-ai-3:132211:132535 [1] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 8 p2p channels, 8 p2p channels per peer
+cse-ai-3:132212:132532 [2] NCCL INFO Connected all trees
+cse-ai-3:132217:132526 [7] NCCL INFO Connected all trees
+cse-ai-3:132212:132532 [2] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 256 | 256
+cse-ai-3:132212:132532 [2] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 8 p2p channels, 8 p2p channels per peer
+cse-ai-3:132216:132525 [6] NCCL INFO Connected all trees
+cse-ai-3:132213:132527 [3] NCCL INFO Connected all trees
+cse-ai-3:132215:132529 [5] NCCL INFO Connected all trees
+cse-ai-3:132214:132528 [4] NCCL INFO Connected all trees
+cse-ai-3:132217:132526 [7] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 256 | 256
+cse-ai-3:132217:132526 [7] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 8 p2p channels, 8 p2p channels per peer
+cse-ai-3:132214:132528 [4] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 256 | 256
+cse-ai-3:132214:132528 [4] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 8 p2p channels, 8 p2p channels per peer
+cse-ai-3:132215:132529 [5] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 256 | 256
+cse-ai-3:132215:132529 [5] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 8 p2p channels, 8 p2p channels per peer
+cse-ai-3:132216:132525 [6] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 256 | 256
+cse-ai-3:132216:132525 [6] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 8 p2p channels, 8 p2p channels per peer
+cse-ai-3:132213:132527 [3] NCCL INFO threadThresholds 8/8/64 | 64/8/64 | 256 | 256
+cse-ai-3:132213:132527 [3] NCCL INFO 2 coll channels, 2 collnet channels, 0 nvls channels, 8 p2p channels, 8 p2p channels per peer
+cse-ai-3:132214:132528 [4] NCCL INFO TUNER/Plugin: Could not find: librccl-tuner.so librccl-net.so. Using internal tuner plugin.
+cse-ai-3:132214:132528 [4] NCCL INFO ncclCommInitRank comm 0x55fe538036a0 rank 4 nranks 8 cudaDev 4 nvmlDev 4 busId 9a000 commId 0x70cfa9a86485d7a1 localSize 564 used 50971040 bytes on core 145 - Init COMPLETE
+cse-ai-3:132213:132527 [3] NCCL INFO TUNER/Plugin: Could not find: librccl-tuner.so librccl-net.so. Using internal tuner plugin.
+cse-ai-3:132214:132528 [4] NCCL INFO Init timings: rank 4 nranks 8 total 2.53 (kernels 0.83, bootstrap 0.57, allgathers 0.05, topo 0.92, graphs 0.03, connections 0.14, rest 0.01)
+cse-ai-3:132216:132525 [6] NCCL INFO TUNER/Plugin: Could not find: librccl-tuner.so librccl-net.so. Using internal tuner plugin.
+cse-ai-3:132215:132529 [5] NCCL INFO TUNER/Plugin: Could not find: librccl-tuner.so librccl-net.so. Using internal tuner plugin.
+cse-ai-3:132213:132527 [3] NCCL INFO ncclCommInitRank comm 0x603e14cc7ab0 rank 3 nranks 8 cudaDev 3 nvmlDev 0 busId 18000 commId 0x70cfa9a86485d7a1 localSize 564 used 50971040 bytes on core 139 - Init COMPLETE
+cse-ai-3:132211:132535 [1] NCCL INFO TUNER/Plugin: Could not find: librccl-tuner.so librccl-net.so. Using internal tuner plugin.
+cse-ai-3:132216:132525 [6] NCCL INFO ncclCommInitRank comm 0x63a4b63a0bd0 rank 6 nranks 8 cudaDev 6 nvmlDev 6 busId ba000 commId 0x70cfa9a86485d7a1 localSize 564 used 50971040 bytes on core 151 - Init COMPLETE
+cse-ai-3:132215:132529 [5] NCCL INFO ncclCommInitRank comm 0x5c9f5e29bd50 rank 5 nranks 8 cudaDev 5 nvmlDev 5 busId aa000 commId 0x70cfa9a86485d7a1 localSize 564 used 50971040 bytes on core 48 - Init COMPLETE
+cse-ai-3:132212:132532 [2] NCCL INFO TUNER/Plugin: Could not find: librccl-tuner.so librccl-net.so. Using internal tuner plugin.
+cse-ai-3:132213:132527 [3] NCCL INFO Init timings: rank 3 nranks 8 total 2.53 (kernels 0.83, bootstrap 0.57, allgathers 0.03, topo 0.93, graphs 0.03, connections 0.14, rest 0.00)
+cse-ai-3:132211:132535 [1] NCCL INFO ncclCommInitRank comm 0x6148a4e1c980 rank 1 nranks 8 cudaDev 1 nvmlDev 2 busId 3a000 commId 0x70cfa9a86485d7a1 localSize 564 used 50971040 bytes on core 42 - Init COMPLETE
+cse-ai-3:132216:132525 [6] NCCL INFO Init timings: rank 6 nranks 8 total 2.53 (kernels 0.83, bootstrap 0.57, allgathers 0.04, topo 0.93, graphs 0.03, connections 0.14, rest 0.00)
+cse-ai-3:132210:132524 [0] NCCL INFO TUNER/Plugin: Could not find: librccl-tuner.so librccl-net.so. Using internal tuner plugin.
+cse-ai-3:132215:132529 [5] NCCL INFO Init timings: rank 5 nranks 8 total 2.53 (kernels 0.83, bootstrap 0.57, allgathers 0.01, topo 0.94, graphs 0.05, connections 0.14, rest 0.00)
+cse-ai-3:132212:132532 [2] NCCL INFO ncclCommInitRank comm 0x579d17979190 rank 2 nranks 8 cudaDev 2 nvmlDev 3 busId 4b000 commId 0x70cfa9a86485d7a1 localSize 564 used 50971040 bytes on core 105 - Init COMPLETE
+cse-ai-3:132211:132535 [1] NCCL INFO Init timings: rank 1 nranks 8 total 2.42 (kernels 0.82, bootstrap 0.46, allgathers 0.02, topo 0.94, graphs 0.03, connections 0.11, rest 0.03)
+cse-ai-3:132217:132526 [7] NCCL INFO TUNER/Plugin: Could not find: librccl-tuner.so librccl-net.so. Using internal tuner plugin.
+cse-ai-3:132210:132524 [0] NCCL INFO ncclCommInitRank comm 0x5a8ad08ecbc0 rank 0 nranks 8 cudaDev 0 nvmlDev 1 busId 29000 commId 0x70cfa9a86485d7a1 localSize 564 used 50971040 bytes on core 137 - Init COMPLETE
+cse-ai-3:132212:132532 [2] NCCL INFO Init timings: rank 2 nranks 8 total 2.46 (kernels 0.81, bootstrap 0.51, allgathers 0.03, topo 0.94, graphs 0.03, connections 0.13, rest 0.02)
+cse-ai-3:132217:132526 [7] NCCL INFO ncclCommInitRank comm 0x5f2caee9ff80 rank 7 nranks 8 cudaDev 7 nvmlDev 7 busId ca000 commId 0x70cfa9a86485d7a1 localSize 564 used 50971040 bytes on core 52 - Init COMPLETE
+cse-ai-3:132210:132524 [0] NCCL INFO Init timings: rank 0 nranks 8 total 2.54 (kernels 0.82, bootstrap 0.58, allgathers 0.04, topo 0.92, graphs 0.03, connections 0.11, rest 0.03)
+cse-ai-3:132217:132526 [7] NCCL INFO Init timings: rank 7 nranks 8 total 2.53 (kernels 0.83, bootstrap 0.57, allgathers 0.00, topo 0.95, graphs 0.05, connections 0.13, rest 0.01)
+[2025-10-28 12:45:59,348] INFO: Input prompt: Summer beach vacation style, a white cat wearing sunglasses sits on a surfboard. The fluffy-furred feline gazes directly at the camera with a relaxed expression. Blurred beach scenery forms the background featuring crystal-clear waters, distant green hills, and a blue sky dotted with white clouds. The cat assumes a naturally relaxed posture, as if savoring the sea breeze and warm sunlight. A close-up shot highlights the feline's intricate details and the refreshing atmosphere of the seaside.
+[2025-10-28 12:45:59,362] INFO: Input image: examples/i2v_input.JPG
+[2025-10-28 12:45:59,362] INFO: Creating WanI2V pipeline.
+[rank6]: Traceback (most recent call last):
+[rank6]:   File "/workspace/repo/Wan2.2/generate.py", line 575, in <module>
+[rank6]:     generate(args)
+[rank6]:   File "/workspace/repo/Wan2.2/generate.py", line 370, in generate
+[rank6]:     dist.broadcast_object_list(base_seed, src=0)
+[rank6]:   File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+[rank6]:     return func(*args, **kwargs)
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 3508, in broadcast_object_list
+[rank6]:     object_list[i] = _tensor_to_object(obj_view, obj_size, group)
+[rank6]:                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]:   File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 2965, in _tensor_to_object
+[rank6]:     return _unpickler(io.BytesIO(buf)).load()
+[rank6]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank6]: EOFError: Ran out of input
+[rank4]: Traceback (most recent call last):
+[rank4]:   File "/workspace/repo/Wan2.2/generate.py", line 575, in <module>
+[rank4]:     generate(args)
+[rank4]:   File "/workspace/repo/Wan2.2/generate.py", line 370, in generate
+[rank4]:     dist.broadcast_object_list(base_seed, src=0)
+[rank4]:   File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+[rank4]:     return func(*args, **kwargs)
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 3508, in broadcast_object_list
+[rank4]:     object_list[i] = _tensor_to_object(obj_view, obj_size, group)
+[rank4]:                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]:   File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 2965, in _tensor_to_object
+[rank4]:     return _unpickler(io.BytesIO(buf)).load()
+[rank4]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank4]: EOFError: Ran out of input
+[rank5]: Traceback (most recent call last):
+[rank5]:   File "/workspace/repo/Wan2.2/generate.py", line 575, in <module>
+[rank5]:     generate(args)
+[rank5]:   File "/workspace/repo/Wan2.2/generate.py", line 370, in generate
+[rank5]:     dist.broadcast_object_list(base_seed, src=0)
+[rank5]:   File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+[rank5]:     return func(*args, **kwargs)
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 3508, in broadcast_object_list
+[rank5]:     object_list[i] = _tensor_to_object(obj_view, obj_size, group)
+[rank5]:                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]:   File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 2965, in _tensor_to_object
+[rank5]:     return _unpickler(io.BytesIO(buf)).load()
+[rank5]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank5]: EOFError: Ran out of input
+[rank7]: Traceback (most recent call last):
+[rank7]:   File "/workspace/repo/Wan2.2/generate.py", line 575, in <module>
+[rank7]:     generate(args)
+[rank7]:   File "/workspace/repo/Wan2.2/generate.py", line 370, in generate
+[rank7]:     dist.broadcast_object_list(base_seed, src=0)
+[rank7]:   File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/c10d_logger.py", line 81, in wrapper
+[rank7]:     return func(*args, **kwargs)
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 3508, in broadcast_object_list
+[rank7]:     object_list[i] = _tensor_to_object(obj_view, obj_size, group)
+[rank7]:                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]:   File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/distributed_c10d.py", line 2965, in _tensor_to_object
+[rank7]:     return _unpickler(io.BytesIO(buf)).load()
+[rank7]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank7]: EOFError: Ran out of input
+cse-ai-3:132214:132616 [4] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:53 -> 3
+cse-ai-3:132216:132617 [6] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:53 -> 3
+cse-ai-3:132214:132616 [4] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:556 -> 3
+cse-ai-3:132216:132617 [6] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:556 -> 3
+cse-ai-3:132214:132616 [4] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:579 -> 3
+cse-ai-3:132216:132617 [6] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:579 -> 3
+cse-ai-3:132214:132585 [4] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:53 -> 3
+cse-ai-3:132216:132617 [6] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:625 -> 3
+cse-ai-3:132216:132584 [6] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:53 -> 3
+cse-ai-3:132214:132585 [4] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:767 -> 3
+cse-ai-3:132216:132584 [6] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:767 -> 3
+cse-ai-3:132214:132585 [4] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:434 -> 3
+cse-ai-3:132216:132584 [6] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:434 -> 3
+cse-ai-3:132214:132585 [4] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:570 -> 3
+cse-ai-3:132216:132584 [6] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:570 -> 3
+cse-ai-3:132214:132585 [4] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:672 -> 3
+cse-ai-3:132216:132584 [6] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:672 -> 3
+cse-ai-3:132214:132616 [4] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:625 -> 3
+
+cse-ai-3:132216:132584 [6] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/proxy.cc:1489 NCCL WARN [Service thread] Accept failed No such file or directory
+
+cse-ai-3:132214:132585 [4] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/proxy.cc:1489 NCCL WARN [Service thread] Accept failed No such file or directory
+cse-ai-3:132216:132617 [6] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:53 -> 3
+cse-ai-3:132216:132617 [6] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:64 -> 3
+cse-ai-3:132216:132617 [6] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:790 -> 3
+cse-ai-3:132216:132584 [6] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:841 -> 3
+
+cse-ai-3:132216:132584 [6] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/proxy.cc:1528 NCCL WARN [Service thread] Could not receive type from localRank 6, res=3, closed=0
+cse-ai-3:132214:132616 [4] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:53 -> 3
+
+cse-ai-3:132216:132584 [6] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/proxy.cc:1552 NCCL WARN [Proxy Service 6] Failed to execute operation Close from rank 6, retcode 3
+cse-ai-3:132214:132616 [4] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:64 -> 3
+cse-ai-3:132214:132616 [4] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:790 -> 3
+cse-ai-3:132214:132585 [4] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:841 -> 3
+
+cse-ai-3:132214:132585 [4] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/proxy.cc:1528 NCCL WARN [Service thread] Could not receive type from localRank 4, res=3, closed=0
+
+cse-ai-3:132214:132585 [4] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/proxy.cc:1552 NCCL WARN [Proxy Service 4] Failed to execute operation Close from rank 4, retcode 3
+cse-ai-3:132215:132618 [5] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:53 -> 3
+cse-ai-3:132215:132618 [5] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:556 -> 3
+cse-ai-3:132215:132591 [5] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:53 -> 3
+cse-ai-3:132215:132591 [5] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:767 -> 3
+cse-ai-3:132215:132618 [5] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:579 -> 3
+cse-ai-3:132215:132618 [5] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:625 -> 3
+cse-ai-3:132215:132591 [5] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:434 -> 3
+cse-ai-3:132215:132591 [5] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:570 -> 3
+cse-ai-3:132215:132591 [5] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:672 -> 3
+
+cse-ai-3:132215:132591 [5] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/proxy.cc:1489 NCCL WARN [Service thread] Accept failed No such file or directory
+cse-ai-3:132215:132618 [5] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:53 -> 3
+cse-ai-3:132215:132618 [5] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:64 -> 3
+cse-ai-3:132215:132591 [5] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:841 -> 3
+
+cse-ai-3:132215:132591 [5] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/proxy.cc:1528 NCCL WARN [Service thread] Could not receive type from localRank 5, res=3, closed=0
+
+cse-ai-3:132215:132591 [5] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/proxy.cc:1552 NCCL WARN [Proxy Service 5] Failed to execute operation Close from rank 5, retcode 3
+cse-ai-3:132215:132618 [5] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:790 -> 3
+cse-ai-3:132217:132619 [7] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:53 -> 3
+cse-ai-3:132217:132619 [7] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:556 -> 3
+cse-ai-3:132217:132619 [7] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:579 -> 3
+cse-ai-3:132217:132619 [7] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:625 -> 3
+cse-ai-3:132217:132587 [7] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:53 -> 3
+cse-ai-3:132217:132587 [7] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:767 -> 3
+cse-ai-3:132217:132587 [7] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:434 -> 3
+cse-ai-3:132217:132587 [7] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:570 -> 3
+cse-ai-3:132217:132587 [7] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:672 -> 3
+
+cse-ai-3:132217:132587 [7] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/proxy.cc:1489 NCCL WARN [Service thread] Accept failed No such file or directory
+cse-ai-3:132217:132619 [7] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:53 -> 3
+cse-ai-3:132217:132619 [7] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:64 -> 3
+cse-ai-3:132217:132587 [7] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:841 -> 3
+
+cse-ai-3:132217:132587 [7] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/proxy.cc:1528 NCCL WARN [Service thread] Could not receive type from localRank 7, res=3, closed=0
+
+cse-ai-3:132217:132587 [7] /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/proxy.cc:1552 NCCL WARN [Proxy Service 7] Failed to execute operation Close from rank 7, retcode 3
+cse-ai-3:132217:132619 [7] NCCL INFO /longer_pathname_so_that_rpms_can_support_packaging_the_debug_info_for_all_os_profiles/src/out/ubuntu-24.04/24.04/build/rccl/hipify/src/misc/socket.cc:790 -> 3
+cse-ai-3:132217:132619 [7] NCCL INFO comm 0x5f2caee9ff80 rank 7 nranks 8 cudaDev 7 busId ca000 - Abort COMPLETE
+cse-ai-3:132215:132618 [5] NCCL INFO comm 0x5c9f5e29bd50 rank 5 nranks 8 cudaDev 5 busId aa000 - Abort COMPLETE
+cse-ai-3:132214:132616 [4] NCCL INFO comm 0x55fe538036a0 rank 4 nranks 8 cudaDev 4 busId 9a000 - Abort COMPLETE
+cse-ai-3:132216:132617 [6] NCCL INFO comm 0x63a4b63a0bd0 rank 6 nranks 8 cudaDev 6 busId ba000 - Abort COMPLETE
+W1028 12:46:02.845000 132116 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 132210 closing signal SIGTERM
+W1028 12:46:02.847000 132116 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 132211 closing signal SIGTERM
+W1028 12:46:02.847000 132116 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 132212 closing signal SIGTERM
+W1028 12:46:02.847000 132116 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 132213 closing signal SIGTERM
+W1028 12:46:02.848000 132116 site-packages/torch/distributed/elastic/multiprocessing/api.py:900] Sending process 132214 closing signal SIGTERM
+E1028 12:46:03.176000 132116 site-packages/torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 5 (pid: 132215) of binary: /opt/conda/envs/py_3.12/bin/python
+Traceback (most recent call last):
+  File "/opt/conda/envs/py_3.12/bin/torchrun", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 355, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/run.py", line 892, in main
+    run(args)
+  File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/run.py", line 883, in run
+    elastic_launch(
+  File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 139, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/conda/envs/py_3.12/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 270, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+generate.py FAILED
+------------------------------------------------------------
+Failures:
+[1]:
+  time      : 2025-10-28_12:46:02
+  host      : cse-ai-3
+  rank      : 6 (local_rank: 6)
+  exitcode  : 1 (pid: 132216)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+[2]:
+  time      : 2025-10-28_12:46:02
+  host      : cse-ai-3
+  rank      : 7 (local_rank: 7)
+  exitcode  : 1 (pid: 132217)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2025-10-28_12:46:02
+  host      : cse-ai-3
+  rank      : 5 (local_rank: 5)
+  exitcode  : 1 (pid: 132215)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
