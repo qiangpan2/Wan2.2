@@ -21,8 +21,9 @@ uv pip install -e . --system
 
 
 #rccl check
+export NCCL_DEBUG=INFO
 python -c "import torch; print(torch.distributed.is_nccl_available())"
-torchrun --nproc_per_node=2 test_nccl.py >  test_nccl.log 2>&1 
+torchrun --nproc_per_node=8 test_nccl.py >  test_nccl.log 2>&1 
 
 
 

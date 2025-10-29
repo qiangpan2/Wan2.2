@@ -50,7 +50,7 @@ def main():
 
     if is_tensor:
         test_broadcast_tensor()
-    else
+    else:
         seed = test_broadcast(base_seed)
 
     # 确保所有卡完成同步
