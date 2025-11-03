@@ -100,7 +100,7 @@ class WanTI2V:
             device=self.device)
 
         logging.info(f"Creating WanModel from {checkpoint_dir}")
-        self.model = WanModel.from_pretrained(checkpoint_dir)
+        self.model = WanModel.from_pretrained(checkpoint_dir,torch_dtype=torch.bfloat16)
         self.model = self._configure_model(
             model=self.model,
             use_sp=use_sp,

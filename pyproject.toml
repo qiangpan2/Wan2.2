@@ -13,13 +13,13 @@ authors = [
 ]
 license = { file = "LICENSE.txt" }
 readme = "README.md"
-requires-python = "==3.12"
+requires-python = "==3.10.12"
 dependencies = [
-    "amdsmi @ file:///opt/rocm-6.4.4/share/amd_smi",
-    "torch @ file:///var/lib/jenkins/pytorch/dist/torch-2.7.1%2Bgit99ccf24-cp312-cp312-linux_x86_64.whl",
+    "torch @ file:///torch-2.8.0%2Brocm7.1.0.lw.git7a520360-cp310-cp310-linux_x86_64.whl",
     "flash_attn @ file:///workspace/repo/flash-attention/dist/flash_attn-2.8.3-py3-none-any.whl",
-    "triton @ file:///var/lib/jenkins/triton/python/dist/triton-3.3.1-cp312-cp312-linux_x86_64.whl",
-    "torchvision==0.22.1+59a3e1f",
+    "triton @ file:///triton-3.4.0%2Brocm7.1.0.gitf9e5bf54-cp310-cp310-linux_x86_64.whl",
+    "torchaudio @ file:///torchaudio-2.8.0%2Brocm7.1.0.git6e1c7fe9-cp310-cp310-linux_x86_64.whl",
+    "torchvision @ file:///torchvision-0.23.0%2Brocm7.1.0.git824e8c87-cp310-cp310-linux_x86_64.whl",
     "opencv-python>=4.9.0.80",
     "diffusers>=0.31.0",
     "transformers>=4.49.0",
@@ -32,8 +32,8 @@ dependencies = [
     "dashscope",
     "imageio-ffmpeg",
     "numpy>=1.23.5,<2",
-    "xfuser>=0.4.1",
     "decord",
+    "librosa",
     "peft"
 ]
 
