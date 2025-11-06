@@ -14,7 +14,7 @@ animate_14B.clip_checkpoint = 'models_clip_open-clip-xlm-roberta-large-vit-huge-
 animate_14B.clip_tokenizer = 'xlm-roberta-large'
 animate_14B.lora_checkpoint = 'relighting_lora.ckpt'
 # vae
-animate_14B.vae_checkpoint = 'Wan2.1_VAE.pth'
+animate_14B.vae_checkpoint = 'Wan2.1_VAE_fp16.pth'
 animate_14B.vae_stride = (4, 8, 8)
 
 # transformer

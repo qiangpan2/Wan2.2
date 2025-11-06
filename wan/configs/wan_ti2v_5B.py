@@ -13,7 +13,7 @@ ti2v_5B.t5_checkpoint = 'models_t5_umt5-xxl-enc-bf16.pth'
 ti2v_5B.t5_tokenizer = 'google/umt5-xxl'
 
 # vae
-ti2v_5B.vae_checkpoint = 'Wan2.2_VAE.pth'
+ti2v_5B.vae_checkpoint = 'Wan2.2_VAE_fp16.pth'
 ti2v_5B.vae_stride = (4, 16, 16)
 
 # transformer
