@@ -1,5 +1,5 @@
 #https://hub.docker.com/r/rocm/pytorch
-docker pull rocm/pytorch:rocm7.1_ubuntu22.04_py3.10_pytorch_release_2.8.0 #db07f47bba86
+docker pull rocm/pytorch:rocm6.4.4_ubuntu24.04_py3.12_pytorch_release_2.7.1 
 
 pip install uv
 uv pip install modelscope
@@ -17,7 +17,7 @@ git sparse-checkout init --cone
 git sparse-checkout set projects/miopen 
 # CK
 
-uv sync --python /opt/venv/bin/python
+uv sync --python /opt/conda/envs/py_3.12/bin/python
 
 #rccl check
 export NCCL_DEBUG=INFO
