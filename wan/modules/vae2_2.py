@@ -44,17 +44,11 @@ class CausalConv3d(nn.Conv3d):
 
         # Use channels_last format for weight if enabled
         if self.channels_last:
-            if x.dim() == 5:
-                x = x.to(memory_format=torch.channels_last_3d)
-            if weight.dim() == 5:
-                weight = weight.to(memory_format=torch.channels_last_3d)
-            if self.bias.dim() == 5:
-                self.bias = self.bias.to(memory_format=torch.channels_last_3d)
-            print("weight=",weight.is_contiguous(memory_format=torch.channels_last_3d))  # True now
-            print("x=",x.is_contiguous(memory_format=torch.channels_last_3d))  # True now
-            print("self.bias=",self.bias.is_contiguous(memory_format=torch.channels_last_3d))  # True now
+#            print("weight=",weight.is_contiguous(memory_format=torch.channels_last_3d))  # True now
+#            print("x=",x.is_contiguous(memory_format=torch.channels_last_3d))  # True now
+#            print("self.bias=",self.bias.is_contiguous(memory_format=torch.channels_last_3d))  # True now
             return torch.nn.functional.conv3d(
-                x, weight, self.bias, self.stride, self.padding,
+                x, self.weight, self.bias, self.stride, self.padding,
                 self.dilation, self.groups
             )
         else:
