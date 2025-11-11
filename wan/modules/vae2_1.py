@@ -19,13 +19,18 @@ class CausalConv3d(nn.Conv3d):
     Causal 3d convolusion.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, channels_last=True, **kwargs):
         super().__init__(*args, **kwargs)
+        self.channels_last = channels_last
         self._padding = (self.padding[2], self.padding[2], self.padding[1],
                          self.padding[1], 2 * self.padding[0], 0)
         self.padding = (0, 0, 0)
 
     def forward(self, x, cache_x=None):
+        # Convert input to channels_last format if enabled
+        if self.channels_last:
+            x = x.to(memory_format=torch.channels_last_3d)
+     
         padding = list(self._padding)
         if cache_x is not None and self._padding[4] > 0:
             cache_x = cache_x.to(x.device)
@@ -33,7 +38,15 @@ class CausalConv3d(nn.Conv3d):
             padding[4] -= cache_x.shape[2]
         x = F.pad(x, padding)
 
-        return super().forward(x)
+        # Use channels_last format for weight if enabled
+        if self.channels_last:
+            weight = self.weight.to(memory_format=torch.channels_last_3d)
+            return torch.nn.functional.conv3d(
+                x, weight, self.bias, self.stride, self.padding,
+                self.dilation, self.groups
+            )
+        else:
+            return super().forward(x)
 
 
 class RMS_norm(nn.Module):
@@ -82,7 +95,7 @@ class Resample(nn.Module):
                 Upsample(scale_factor=(2., 2.), mode='nearest-exact'),
                 nn.Conv2d(dim, dim // 2, 3, padding=1))
             self.time_conv = CausalConv3d(
-                dim, dim * 2, (3, 1, 1), padding=(1, 0, 0))
+                dim, dim * 2, (3, 1, 1), padding=(1, 0, 0),channels_last=True)
 
         elif mode == 'downsample2d':
             self.resample = nn.Sequential(
@@ -93,7 +106,7 @@ class Resample(nn.Module):
                 nn.ZeroPad2d((0, 1, 0, 1)),
                 nn.Conv2d(dim, dim, 3, stride=(2, 2)))
             self.time_conv = CausalConv3d(
-                dim, dim, (3, 1, 1), stride=(2, 1, 1), padding=(0, 0, 0))
+                dim, dim, (3, 1, 1), stride=(2, 1, 1), padding=(0, 0, 0), channels_last=True)
 
         else:
             self.resample = nn.Identity()
@@ -193,10 +206,10 @@ class ResidualBlock(nn.Module):
         # layers
         self.residual = nn.Sequential(
             RMS_norm(in_dim, images=False), nn.SiLU(),
-            CausalConv3d(in_dim, out_dim, 3, padding=1),
+            CausalConv3d(in_dim, out_dim, 3, padding=1, channels_last=True),
             RMS_norm(out_dim, images=False), nn.SiLU(), nn.Dropout(dropout),
-            CausalConv3d(out_dim, out_dim, 3, padding=1))
-        self.shortcut = CausalConv3d(in_dim, out_dim, 1) \
+            CausalConv3d(out_dim, out_dim, 3, padding=1, channels_last=True))
+        self.shortcut = CausalConv3d(in_dim, out_dim, 1, channels_last=True) \
             if in_dim != out_dim else nn.Identity()
 
     def forward(self, x, feat_cache=None, feat_idx=[0]):
@@ -285,7 +298,7 @@ class Encoder3d(nn.Module):
         scale = 1.0
 
         # init block
-        self.conv1 = CausalConv3d(3, dims[0], 3, padding=1)
+        self.conv1 = CausalConv3d(3, dims[0], 3, padding=1, channels_last=True)
 
         # downsample blocks
         downsamples = []
@@ -313,7 +326,7 @@ class Encoder3d(nn.Module):
         # output blocks
         self.head = nn.Sequential(
             RMS_norm(out_dim, images=False), nn.SiLU(),
-            CausalConv3d(out_dim, z_dim, 3, padding=1))
+            CausalConv3d(out_dim, z_dim, 3, padding=1, channels_last=True))
 
     def forward(self, x, feat_cache=None, feat_idx=[0]):
         if feat_cache is not None:
@@ -389,7 +402,7 @@ class Decoder3d(nn.Module):
         scale = 1.0 / 2**(len(dim_mult) - 2)
 
         # init block
-        self.conv1 = CausalConv3d(z_dim, dims[0], 3, padding=1)
+        self.conv1 = CausalConv3d(z_dim, dims[0], 3, padding=1, channels_last=True)
 
         # middle blocks
         self.middle = nn.Sequential(
@@ -418,7 +431,7 @@ class Decoder3d(nn.Module):
         # output blocks
         self.head = nn.Sequential(
             RMS_norm(out_dim, images=False), nn.SiLU(),
-            CausalConv3d(out_dim, 3, 3, padding=1))
+            CausalConv3d(out_dim, 3, 3, padding=1, channels_last=True))
 
     def forward(self, x, feat_cache=None, feat_idx=[0]):
         ## conv1
@@ -502,8 +515,8 @@ class WanVAE_(nn.Module):
         # modules
         self.encoder = Encoder3d(dim, z_dim * 2, dim_mult, num_res_blocks,
                                  attn_scales, self.temperal_downsample, dropout)
-        self.conv1 = CausalConv3d(z_dim * 2, z_dim * 2, 1)
-        self.conv2 = CausalConv3d(z_dim, z_dim, 1)
+        self.conv1 = CausalConv3d(z_dim * 2, z_dim * 2, 1, channels_last=True)
+        self.conv2 = CausalConv3d(z_dim, z_dim, 1, channels_last=True)
         self.decoder = Decoder3d(dim, z_dim, dim_mult, num_res_blocks,
                                  attn_scales, self.temperal_upsample, dropout)
 
