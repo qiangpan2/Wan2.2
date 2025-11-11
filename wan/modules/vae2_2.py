@@ -45,9 +45,10 @@ class CausalConv3d(nn.Conv3d):
         if self.channels_last:
             if x.dim() == 5:
                 x = x.to(memory_format=torch.channels_last_3d)
+            weight = self.weight
             if weight.dim() == 5:
                 weight = weight.to(memory_format=torch.channels_last_3d)
-            if self.bias.dim() == 5:
+            if self.bias is not None and self.bias.dim() == 5:
                 self.bias = self.bias.to(memory_format=torch.channels_last_3d)
             return torch.nn.functional.conv3d(
                 x, weight, self.bias, self.stride, self.padding,
