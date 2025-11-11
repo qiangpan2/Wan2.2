@@ -298,19 +298,30 @@ class WanI2V:
         if n_prompt == "":
             n_prompt = self.sample_neg_prompt
 
+        logging.info("Start T5 ...")
         # preprocess
         if not self.t5_cpu:
+            logging.info("---------move model to GPU-------------------")
             self.text_encoder.model.to(self.device)
+            logging.info("---------Text encoding with context in GPU-----------")
             context = self.text_encoder([input_prompt], self.device)
+            logging.info("---------Text encoding with NULL for noise in GPU-----------")
             context_null = self.text_encoder([n_prompt], self.device)
             if offload_model:
+                logging.info("---------offload to CPU-----------")
                 self.text_encoder.model.cpu()
         else:
+            logging.info("---------Text encoding with context in CPU-----------")
             context = self.text_encoder([input_prompt], torch.device('cpu'))
+            logging.info("---------Test encoding with NULL for noise in CPU-----------")
             context_null = self.text_encoder([n_prompt], torch.device('cpu'))
+            logging.info("---------move encoded context to GPU-----------")
             context = [t.to(self.device) for t in context]
+            logging.info("---------move encoded context-NULL to GPU-----------")
             context_null = [t.to(self.device) for t in context_null]
+        logging.info("---------T5 Done-----------")
 
+        logging.info("Start VAE Encode ...")
         y = self.vae.encode([
             torch.concat([
                 torch.nn.functional.interpolate(
@@ -379,6 +390,7 @@ class WanI2V:
             if offload_model:
                 torch.cuda.empty_cache()
 
+            logging.info("Start DiT ...")
             for _, t in enumerate(tqdm(timesteps)):
                 latent_model_input = [latent.to(self.device)]
                 timestep = [t]
@@ -412,11 +424,13 @@ class WanI2V:
                 x0 = [latent]
                 del latent_model_input, timestep
 
+            logging.info("ofloading to CPU ...")
             if offload_model:
                 self.low_noise_model.cpu()
                 self.high_noise_model.cpu()
                 torch.cuda.empty_cache()
 
+            logging.info("Start VAE DECODing ...")
             if self.rank == 0:
                 videos = self.vae.decode(x0)
 
