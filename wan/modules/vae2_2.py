@@ -875,7 +875,7 @@ class WanVAE_(nn.Module):
         self._enc_feat_map = [None] * self._enc_conv_num
 
 
-def _video_vae(pretrained_path=None, z_dim=16, dim=160, device="cpu", **kwargs):
+def _video_vae(pretrained_path=None, z_dim=16, dim=160, device="cpu", dtype=torch.float,**kwargs):
     # params
     cfg = dict(
         dim=dim,
@@ -897,6 +897,7 @@ def _video_vae(pretrained_path=None, z_dim=16, dim=160, device="cpu", **kwargs):
     model.load_state_dict(
         torch.load(pretrained_path, map_location=device), assign=True)
 
+    model = model.to(dtype)
     return model
 
 
@@ -909,7 +910,7 @@ class Wan2_2_VAE:
         vae_pth=None,
         dim_mult=[1, 2, 4, 4],
         temperal_downsample=[False, True, True],
-        dtype=torch.float,
+        dtype=torch.bfloat16,
         device="cuda",
     ):
 
@@ -1034,6 +1035,7 @@ class Wan2_2_VAE:
                 dim=c_dim,
                 dim_mult=dim_mult,
                 temperal_downsample=temperal_downsample,
+                dtype=self.dtype
             ).eval().requires_grad_(False).to(device))
 
     def encode(self, videos):

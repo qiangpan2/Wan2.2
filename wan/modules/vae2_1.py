@@ -602,7 +602,7 @@ class WanVAE_(nn.Module):
         self._enc_feat_map = [None] * self._enc_conv_num
 
 
-def _video_vae(pretrained_path=None, z_dim=None, device='cpu', **kwargs):
+def _video_vae(pretrained_path=None, z_dim=None, device='cpu', dtype=torch.float, **kwargs):
     """
     Autoencoder3d adapted from Stable Diffusion 1.x, 2.x and XL.
     """
@@ -626,6 +626,7 @@ def _video_vae(pretrained_path=None, z_dim=None, device='cpu', **kwargs):
     model.load_state_dict(
         torch.load(pretrained_path, map_location=device), assign=True)
 
+    model = model.to(dtype)
     return model
 
 
@@ -634,7 +635,7 @@ class Wan2_1_VAE:
     def __init__(self,
                  z_dim=16,
                  vae_pth='cache/vae_step_411000.pth',
-                 dtype=torch.float,
+                 dtype=torch.bfloat16,
                  device="cuda"):
         self.dtype = dtype
         self.device = device
@@ -655,6 +656,7 @@ class Wan2_1_VAE:
         self.model = _video_vae(
             pretrained_path=vae_pth,
             z_dim=z_dim,
+            dtype=self.dtype
         ).eval().requires_grad_(False).to(device)
 
     def encode(self, videos):
