@@ -254,6 +254,7 @@ class WanI2V:
                 - W: Frame width from max_area)
         """
         # preprocess
+        torch.cuda.memory._record_memory_history()
         guide_scale = (guide_scale, guide_scale) if isinstance(
             guide_scale, float) else guide_scale
         img = TF.to_tensor(img).sub_(0.5).div_(0.5).to(self.device)
@@ -429,7 +430,7 @@ class WanI2V:
                 self.low_noise_model.cpu()
                 self.high_noise_model.cpu()
                 torch.cuda.empty_cache()
-
+            torch.cuda.memory._dump_snapshot("my_snapshot.pickle")
             logging.info("Start VAE DECODing ...")
             if self.rank == 0:
                 videos = self.vae.decode(x0)
