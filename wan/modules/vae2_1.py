@@ -564,19 +564,14 @@ class WanVAE_(nn.Module):
             z = z / scale[1] + scale[0]
         iter_ = z.shape[2]
         x = self.conv2(z)
+        out_list = []
         for i in range(iter_):
             self._conv_idx = [0]
-            if i == 0:
-                out = self.decoder(
-                    x[:, :, i:i + 1, :, :],
-                    feat_cache=self._feat_map,
-                    feat_idx=self._conv_idx)
-            else:
-                out_ = self.decoder(
-                    x[:, :, i:i + 1, :, :],
-                    feat_cache=self._feat_map,
-                    feat_idx=self._conv_idx)
-                out = torch.cat([out, out_], 2)
+            out_list.append(self.decoder(
+                x[:, :, i:i + 1, :, :],
+                feat_cache=self._feat_map,
+                feat_idx=self._conv_idx))
+        out = torch.cat(out_list, dim=2)
         self.clear_cache()
         return out
 
