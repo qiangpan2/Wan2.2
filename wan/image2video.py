@@ -380,26 +380,38 @@ class WanI2V:
                 torch.cuda.empty_cache()
 
             for _, t in enumerate(tqdm(timesteps)):
-                latent_model_input = [latent.to(self.device)]
-                timestep = [t]
-
-                timestep = torch.stack(timestep).to(self.device)
+                #(batch=2: [cond, uncond])
+                latent_model_input = [latent.to(self.device), latent.to(self.device)]
+                timestep = torch.stack([t, t]).to(self.device)
 
                 model = self._prepare_model_for_timestep(
                     t, boundary, offload_model)
                 sample_guide_scale = guide_scale[1] if t.item(
                 ) >= boundary else guide_scale[0]
 
-                noise_pred_cond = model(
-                    latent_model_input, t=timestep, **arg_c)[0]
+                # Merge conditional and unconditional inputs for single forward pass
+                context_batched = [arg_c['context'][0], arg_null['context'][0]]
+                y_batched = [arg_c['y'][0], arg_null['y'][0]]
+                
+                # Single batched model call (batch=2)
+                noise_pred_batched = model(
+                    latent_model_input, 
+                    t=timestep, 
+                    context=context_batched,
+                    seq_len=arg_c['seq_len'],
+                    y=y_batched
+                )[0]
+                
+                # Split batched results
+                noise_pred_cond, noise_pred_uncond = noise_pred_batched.chunk(2)
+                del noise_pred_batched
+                
+                # Optimized CFG calculation using in-place lerp
+                noise_pred = noise_pred_uncond.lerp_(noise_pred_cond, sample_guide_scale)
+                del noise_pred_cond, noise_pred_uncond
+                
                 if offload_model:
                     torch.cuda.empty_cache()
-                noise_pred_uncond = model(
-                    latent_model_input, t=timestep, **arg_null)[0]
-                if offload_model:
-                    torch.cuda.empty_cache()
-                noise_pred = noise_pred_uncond + sample_guide_scale * (
-                    noise_pred_cond - noise_pred_uncond)
 
                 temp_x0 = sample_scheduler.step(
                     noise_pred.unsqueeze(0),
