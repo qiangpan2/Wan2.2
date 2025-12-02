@@ -16,8 +16,8 @@ license = { file = "LICENSE.txt" }
 readme = "README.md"
 requires-python = "==3.12.11"
 dependencies = [
-    "torch @ file:///workspace/repo/pytorch/dist/torch-2.7.1a0+gitc167f7a-cp312-cp312-linux_x86_64.whl",
-    "flash_attn @ file:///workspace/repo/flash-attention/dist/flash_attn-2.8.3-py3-none-any.whl",
+    "torch @ file:///root/torch-2.7.1a0+git5c85eab-cp312-cp312-linux_x86_64.whl",
+    "flash_attn @ file:///root/flash_attn-2.8.3-py3-none-any.whl",
     "triton @ file:///var/lib/jenkins/triton/python",
     "torchaudio @ https://repo.radeon.com/rocm/manylinux/rocm-rel-6.4.4/torchaudio-2.7.1%2Brocm6.4.4.git95c61b41-cp312-cp312-linux_x86_64.whl",
     "torchvision @ https://repo.radeon.com/rocm/manylinux/rocm-rel-6.4.4/torchvision-0.22.1%2Brocm6.4.4.git59a3e1f9-cp312-cp312-linux_x86_64.whl",
