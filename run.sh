@@ -1,5 +1,19 @@
 #https://hub.docker.com/r/rocm/pytorch
-docker pull rocm/pytorch:rocm6.4.4_ubuntu24.04_py3.12_pytorch_release_2.7.1 
+docker pull rocm/pytorch:rocm7.1_ubuntu24.04_py3.13_pytorch_release_2.9.1
+docker run -itd \
+  --name qiang_rocm7.1_ubuntu24.04_py3.13_pytorch_release_2.9.1 \
+  --device /dev/kfd \
+  --device /dev/dri/renderD129 \
+  --group-add video \
+  --privileged \
+  --ipc=host \
+  --network=host \
+  --cap-add=SYS_PTRACE \
+  --security-opt seccomp=unconfined \
+  -v qiang:/workspace \
+  -w /workspace \
+  compute-artifactory.amd.com:5000/rocm-plus-docker/framework/compute-rocm-dkms-no-npi-hipclang:16148_ubuntu22.04_py3.10_pytorch_release-2.6_ce580d3 \
+  /bin/bash  
 
 export PATH=/opt/ompi/bin:/opt/ucx/bin:/opt/cache/bin:/opt/rocm/llvm/bin:/opt/rocm/opencl/bin:/opt/rocm/hip/bin:/opt/rocm/hcc/bin:/opt/rocm/bin:/opt/conda/envs/py_3.12/bin:/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;
 
