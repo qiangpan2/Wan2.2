@@ -3,7 +3,7 @@ docker pull rocm/pytorch:rocm7.1_ubuntu24.04_py3.13_pytorch_release_2.9.1
 docker run -itd \
   --name qiang_rocm7.1_ubuntu24.04_py3.13_pytorch_release_2.9.1 \
   --device /dev/kfd \
-  --device /dev/dri/renderD129 \
+  --device /dev/dri \
   --group-add video \
   --privileged \
   --ipc=host \
@@ -12,7 +12,7 @@ docker run -itd \
   --security-opt seccomp=unconfined \
   -v qiang:/workspace \
   -w /workspace \
-  compute-artifactory.amd.com:5000/rocm-plus-docker/framework/compute-rocm-dkms-no-npi-hipclang:16148_ubuntu22.04_py3.10_pytorch_release-2.6_ce580d3 \
+  rocm/pytorch:rocm7.1_ubuntu24.04_py3.13_pytorch_release_2.9.1 \
   /bin/bash  
 
 export PATH=/opt/ompi/bin:/opt/ucx/bin:/opt/cache/bin:/opt/rocm/llvm/bin:/opt/rocm/opencl/bin:/opt/rocm/hip/bin:/opt/rocm/hcc/bin:/opt/rocm/bin:/opt/conda/envs/py_3.12/bin:/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;
@@ -27,13 +27,13 @@ modelscope download Wan-AI/Wan2.2-TI2V-5B --local_dir ./Wan2.2-TI2V-5B --revisio
 # diffusion_pytorch_model-$1-of-$2-bf16.safetensors
 
 # MIopen
-git clone --no-checkout --filter=blob:none
+git clone git@github.com:qiangpan2/rocm-libraries.git --no-checkout --filter=blob:none
 cd rocm-libraries
 git sparse-checkout init --cone
 git sparse-checkout set projects/miopen 
 # CK
 
-uv sync --python /opt/conda/envs/py_3.12/bin/python
+uv sync --python /opt/venv/bin/python
 
 #rccl check
 export NCCL_DEBUG=INFO
@@ -54,6 +54,7 @@ LD_LIBRARY_PATH=${DEPS_PREFIX}/lib:$LD_LIBRARY_PATH \
     which MIOpenDriver
 
 export DEPS_PREFIX="${HOME}/miopen-deps"
+export FLASH_ATTENTION_TRITON_AMD_ENABLE="TRUE"
 LD_LIBRARY_PATH=${DEPS_PREFIX}/lib:$LD_LIBRARY_PATH \
     HIP_VISIBLE_DEVICES=5 \
     PATH=${DEPS_PREFIX}/bin:$PATH \
