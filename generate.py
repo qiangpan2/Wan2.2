@@ -221,6 +221,11 @@ def _parse_args():
         action="store_true",
         default=False,
         help="Whether to convert model paramerters dtype.")
+    parser.add_argument(
+        "--verbose_pipeline",
+        action="store_true",
+        default=False,
+        help="Enable verbose logging for pipeline stages (T5, VAE, DiT).")
 
     # animate
     parser.add_argument(
@@ -537,7 +542,8 @@ def generate(args):
             sampling_steps=args.sample_steps,
             guide_scale=args.sample_guide_scale,
             seed=args.base_seed,
-            offload_model=args.offload_model)
+            offload_model=args.offload_model,
+            verbose_pipeline=args.verbose_pipeline)
 
     if rank == 0:
         if args.save_file is None:
