@@ -102,7 +102,7 @@ class WanI2V:
 
         logging.info(f"Creating WanModel from {checkpoint_dir}")
         self.low_noise_model = WanModel.from_pretrained(
-            checkpoint_dir, subfolder=config.low_noise_checkpoint)
+            checkpoint_dir, subfolder=config.low_noise_checkpoint,torch_dtype=torch.bfloat16)
         self.low_noise_model = self._configure_model(
             model=self.low_noise_model,
             use_sp=use_sp,
@@ -111,7 +111,7 @@ class WanI2V:
             convert_model_dtype=convert_model_dtype)
 
         self.high_noise_model = WanModel.from_pretrained(
-            checkpoint_dir, subfolder=config.high_noise_checkpoint)
+            checkpoint_dir, subfolder=config.high_noise_checkpoint,torch_dtype=torch.bfloat16)
         self.high_noise_model = self._configure_model(
             model=self.high_noise_model,
             use_sp=use_sp,
@@ -214,7 +214,8 @@ class WanI2V:
                  guide_scale=5.0,
                  n_prompt="",
                  seed=-1,
-                 offload_model=True):
+                 offload_model=True,
+                 verbose_pipeline=False):
         r"""
         Generates video frames from input image and text prompt using diffusion process.
 
@@ -244,6 +245,8 @@ class WanI2V:
                 Random seed for noise generation. If -1, use random seed
             offload_model (`bool`, *optional*, defaults to True):
                 If True, offloads models to CPU during generation to save VRAM
+            verbose_pipeline (`bool`, *optional*, defaults to False):
+                If True, enables detailed logging for pipeline stages (T5, VAE, DiT)
 
         Returns:
             torch.Tensor:
@@ -254,7 +257,6 @@ class WanI2V:
                 - W: Frame width from max_area)
         """
         # preprocess
-        torch.cuda.memory._record_memory_history()
         guide_scale = (guide_scale, guide_scale) if isinstance(
             guide_scale, float) else guide_scale
         img = TF.to_tensor(img).sub_(0.5).div_(0.5).to(self.device)
@@ -299,30 +301,41 @@ class WanI2V:
         if n_prompt == "":
             n_prompt = self.sample_neg_prompt
 
-        logging.info("Start T5 ...")
+        if verbose_pipeline:
+            logging.info("Start T5 ...")
         # preprocess
         if not self.t5_cpu:
-            logging.info("---------move model to GPU-------------------")
+            if verbose_pipeline:
+                logging.info("---------move model to GPU-------------------")
             self.text_encoder.model.to(self.device)
-            logging.info("---------Text encoding with context in GPU-----------")
+            if verbose_pipeline:
+                logging.info("---------Text encoding with context in GPU-----------")
             context = self.text_encoder([input_prompt], self.device)
-            logging.info("---------Text encoding with NULL for noise in GPU-----------")
+            if verbose_pipeline:
+                logging.info("---------Text encoding with NULL for noise in GPU-----------")
             context_null = self.text_encoder([n_prompt], self.device)
             if offload_model:
-                logging.info("---------offload to CPU-----------")
+                if verbose_pipeline:
+                    logging.info("---------offload to CPU-----------")
                 self.text_encoder.model.cpu()
         else:
-            logging.info("---------Text encoding with context in CPU-----------")
+            if verbose_pipeline:
+                logging.info("---------Text encoding with context in CPU-----------")
             context = self.text_encoder([input_prompt], torch.device('cpu'))
-            logging.info("---------Test encoding with NULL for noise in CPU-----------")
+            if verbose_pipeline:
+                logging.info("---------Test encoding with NULL for noise in CPU-----------")
             context_null = self.text_encoder([n_prompt], torch.device('cpu'))
-            logging.info("---------move encoded context to GPU-----------")
+            if verbose_pipeline:
+                logging.info("---------move encoded context to GPU-----------")
             context = [t.to(self.device) for t in context]
-            logging.info("---------move encoded context-NULL to GPU-----------")
+            if verbose_pipeline:
+                logging.info("---------move encoded context-NULL to GPU-----------")
             context_null = [t.to(self.device) for t in context_null]
-        logging.info("---------T5 Done-----------")
+        if verbose_pipeline:
+            logging.info("---------T5 Done-----------")
 
-        logging.info("Start VAE Encode ...")
+        if verbose_pipeline:
+            logging.info("Start VAE Encode ...")
         y = self.vae.encode([
             torch.concat([
                 torch.nn.functional.interpolate(
@@ -391,7 +404,8 @@ class WanI2V:
             if offload_model:
                 torch.cuda.empty_cache()
 
-            logging.info("Start DiT ...")
+            if verbose_pipeline:
+                logging.info("Start DiT ...")
             for _, t in enumerate(tqdm(timesteps)):
                 latent_model_input = [latent.to(self.device)]
                 timestep = [t]
@@ -425,13 +439,15 @@ class WanI2V:
                 x0 = [latent]
                 del latent_model_input, timestep
 
-            logging.info("ofloading to CPU ...")
+            if verbose_pipeline:
+                logging.info("ofloading to CPU ...")
             if offload_model:
                 self.low_noise_model.cpu()
                 self.high_noise_model.cpu()
                 torch.cuda.empty_cache()
-            torch.cuda.memory._dump_snapshot("my_snapshot.pickle")
-            logging.info("Start VAE DECODing ...")
+
+            if verbose_pipeline:
+                logging.info("Start VAE DECODing ...")
             if self.rank == 0:
                 videos = self.vae.decode(x0)
 

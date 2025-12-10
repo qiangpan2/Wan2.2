@@ -221,6 +221,11 @@ def _parse_args():
         action="store_true",
         default=False,
         help="Whether to convert model paramerters dtype.")
+    parser.add_argument(
+        "--verbose_pipeline",
+        action="store_true",
+        default=False,
+        help="Enable verbose logging for pipeline stages (T5, VAE, DiT).")
 
     # animate
     parser.add_argument(
@@ -413,7 +418,6 @@ def generate(args):
             t5_cpu=args.t5_cpu,
             convert_model_dtype=args.convert_model_dtype,
         )
-
         logging.info(f"Generating video ...")
         video = wan_t2v.generate(
             args.prompt,
@@ -424,7 +428,8 @@ def generate(args):
             sampling_steps=args.sample_steps,
             guide_scale=args.sample_guide_scale,
             seed=args.base_seed,
-            offload_model=args.offload_model)
+            offload_model=args.offload_model,
+            verbose_pipeline=args.verbose_pipeline)
     elif "ti2v" in args.task:
         logging.info("Creating WanTI2V pipeline.")
         wan_ti2v = wan.WanTI2V(
@@ -437,7 +442,7 @@ def generate(args):
             use_sp=(args.ulysses_size > 1),
             t5_cpu=args.t5_cpu,
             convert_model_dtype=args.convert_model_dtype,
-        )
+            )
 
         logging.info(f"Generating video ...")
         video = wan_ti2v.generate(
@@ -451,7 +456,8 @@ def generate(args):
             sampling_steps=args.sample_steps,
             guide_scale=args.sample_guide_scale,
             seed=args.base_seed,
-            offload_model=args.offload_model)
+            offload_model=args.offload_model,
+            verbose_pipeline=args.verbose_pipeline)
     elif "animate" in args.task:
         logging.info("Creating Wan-Animate pipeline.")
         wan_animate = wan.WanAnimate(
@@ -537,7 +543,8 @@ def generate(args):
             sampling_steps=args.sample_steps,
             guide_scale=args.sample_guide_scale,
             seed=args.base_seed,
-            offload_model=args.offload_model)
+            offload_model=args.offload_model,
+            verbose_pipeline=args.verbose_pipeline)
 
     if rank == 0:
         if args.save_file is None:
