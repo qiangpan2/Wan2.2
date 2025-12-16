@@ -1,7 +1,7 @@
 #https://hub.docker.com/r/rocm/pytorch
-docker pull rocm/pytorch:rocm7.1_ubuntu24.04_py3.13_pytorch_release_2.9.1
+docker pull rocm/pytorch:rocm7.1_ubuntu24.04_py3.12_pytorch_release_2.9.1
 docker run -itd \
-  --name qiang_rocm7.1_ubuntu24.04_py3.13_pytorch_release_2.9.1 \
+  --name qiang_rocm7.1_ubuntu24.04_py3.12_pytorch_release_2.9.1 \
   --device /dev/kfd \
   --device /dev/dri \
   --group-add video \
@@ -12,7 +12,7 @@ docker run -itd \
   --security-opt seccomp=unconfined \
   -v qiang:/workspace \
   -w /workspace \
-  rocm/pytorch:rocm7.1_ubuntu24.04_py3.13_pytorch_release_2.9.1 \
+  rocm/pytorch:rocm7.1_ubuntu24.04_py3.12_pytorch_release_2.9.1 \
   /bin/bash  
 
 export PATH=/opt/ompi/bin:/opt/ucx/bin:/opt/cache/bin:/opt/rocm/llvm/bin:/opt/rocm/opencl/bin:/opt/rocm/hip/bin:/opt/rocm/hcc/bin:/opt/rocm/bin:/opt/conda/envs/py_3.12/bin:/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin;
