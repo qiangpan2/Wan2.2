@@ -142,6 +142,12 @@ def _parse_args():
         default=1,
         help="The size of the ulysses parallelism in DiT.")
     parser.add_argument(
+        "--ring_size",
+        type=int,
+        default=1,
+        help="The size of the ring aprallelism in DiT"
+    )
+    parser.add_argument(
         "--t5_fsdp",
         action="store_true",
         default=False,
@@ -340,12 +346,21 @@ def generate(args):
             args.t5_fsdp or args.dit_fsdp
         ), f"t5_fsdp and dit_fsdp are not supported in non-distributed environments."
         assert not (
-            args.ulysses_size > 1
+            args.ulysses_size > 1 or args.ring_size > 1
         ), f"sequence parallel are not supported in non-distributed environments."
 
-    if args.ulysses_size > 1:
-        assert args.ulysses_size == world_size, f"The number of ulysses_size should be equal to the world size."
-        init_distributed_group()
+    if args.ulysses_size > 1 or args.ring_size > 1:
+        assert args.ulysses_size * args.ring_size == world_size, f"The number of ulysses_size should be equal to the world size."
+        from xfuser.core.distributed import (initialize_model_parallel,
+                                             init_distributed_environment)
+        init_distributed_environment(
+            rank=dist.get_rank(), world_size=dist.get_world_size())
+
+        initialize_model_parallel(
+            sequence_parallel_degree=dist.get_world_size(),
+            ring_degree=args.ring_size,
+            ulysses_degree=args.ulysses_size,
+        )
 
     if args.use_prompt_extend:
         if args.prompt_extend_method == "dashscope":
@@ -414,7 +429,7 @@ def generate(args):
             rank=rank,
             t5_fsdp=args.t5_fsdp,
             dit_fsdp=args.dit_fsdp,
-            use_sp=(args.ulysses_size > 1),
+            use_usp=(args.ulysses_size > 1 or args.ring_size > 1),
             t5_cpu=args.t5_cpu,
             convert_model_dtype=args.convert_model_dtype,
         )
@@ -439,7 +454,7 @@ def generate(args):
             rank=rank,
             t5_fsdp=args.t5_fsdp,
             dit_fsdp=args.dit_fsdp,
-            use_sp=(args.ulysses_size > 1),
+            use_usp=(args.ulysses_size > 1 or args.ring_size > 1),
             t5_cpu=args.t5_cpu,
             convert_model_dtype=args.convert_model_dtype,
         )
@@ -527,7 +542,7 @@ def generate(args):
             rank=rank,
             t5_fsdp=args.t5_fsdp,
             dit_fsdp=args.dit_fsdp,
-            use_sp=(args.ulysses_size > 1),
+            use_usp=(args.ulysses_size > 1 or args.ring_size > 1),
             t5_cpu=args.t5_cpu,
             convert_model_dtype=args.convert_model_dtype,
         )

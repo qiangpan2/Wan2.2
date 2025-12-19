@@ -17,7 +17,7 @@ from PIL import Image
 from tqdm import tqdm
 
 from .distributed.fsdp import shard_model
-from .distributed.sequence_parallel import sp_attn_forward, sp_dit_forward
+#from .distributed.sequence_parallel import sp_attn_forward, sp_dit_forward
 from .distributed.util import get_world_size
 from .modules.model import WanModel
 from .modules.t5 import T5EncoderModel
@@ -41,7 +41,7 @@ class WanTI2V:
         rank=0,
         t5_fsdp=False,
         dit_fsdp=False,
-        use_sp=False,
+        use_usp=False,
         t5_cpu=False,
         init_on_cpu=True,
         convert_model_dtype=False,
@@ -81,7 +81,7 @@ class WanTI2V:
         self.num_train_timesteps = config.num_train_timesteps
         self.param_dtype = config.param_dtype
 
-        if t5_fsdp or dit_fsdp or use_sp:
+        if t5_fsdp or dit_fsdp or use_usp:
             self.init_on_cpu = False
 
         shard_fn = partial(shard_model, device_id=device_id)
@@ -103,19 +103,19 @@ class WanTI2V:
         self.model = WanModel.from_pretrained(checkpoint_dir,torch_dtype=torch.bfloat16)
         self.model = self._configure_model(
             model=self.model,
-            use_sp=use_sp,
+            use_usp=use_usp,
             dit_fsdp=dit_fsdp,
             shard_fn=shard_fn,
             convert_model_dtype=convert_model_dtype)
 
-        if use_sp:
+        if use_usp:
             self.sp_size = get_world_size()
         else:
             self.sp_size = 1
 
         self.sample_neg_prompt = config.sample_neg_prompt
 
-    def _configure_model(self, model, use_sp, dit_fsdp, shard_fn,
+    def _configure_model(self, model, use_usp, dit_fsdp, shard_fn,
                          convert_model_dtype):
         """
         Configures a model object. This includes setting evaluation modes,
@@ -140,11 +140,19 @@ class WanTI2V:
         """
         model.eval().requires_grad_(False)
 
-        if use_sp:
+        if use_usp:
+            from xfuser.core.distributed import \
+                get_sequence_parallel_world_size
+
+            from .distributed.xdit_context_parallel import (usp_attn_forward,
+                                                            usp_dit_forward)
             for block in model.blocks:
                 block.self_attn.forward = types.MethodType(
-                    sp_attn_forward, block.self_attn)
-            model.forward = types.MethodType(sp_dit_forward, model)
+                    usp_attn_forward, block.self_attn)
+            model.forward = types.MethodType(usp_dit_forward, model)
+            self.sp_size = get_sequence_parallel_world_size()
+        else:
+            self.sp_size = 1
 
         if dist.is_initialized():
             dist.barrier()
