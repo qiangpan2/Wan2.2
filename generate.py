@@ -377,9 +377,12 @@ def generate(args):
     logging.info(f"Generation model config: {cfg}")
 
     if dist.is_initialized():
-        base_seed = [args.base_seed] if rank == 0 else [None]
-        dist.broadcast_object_list(base_seed, src=0)
-        args.base_seed = base_seed[0]
+        if rank == 0:
+            seed_tensor = torch.tensor([args.base_seed], dtype=torch.long, device=device)
+        else:
+            seed_tensor = torch.tensor([0], dtype=torch.long, device=device)
+        dist.broadcast(seed_tensor, src=0)
+        args.base_seed = seed_tensor.item()
 
     logging.info(f"Input prompt: {args.prompt}")
     img = None
