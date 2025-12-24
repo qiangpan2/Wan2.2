@@ -299,6 +299,12 @@ def _parse_args():
         default=80,
         help="Number of frames per clip, 48 or 80 or others (must be multiple of 4) for 14B s2v"
     )
+    parser.add_argument(
+        "--profile",
+        action="store_true",
+        default=False,
+        help="Whether to enable torch.profiler for performance analysis."
+    )
     args = parser.parse_args()
     _validate_args(args)
 
@@ -404,6 +410,20 @@ def generate(args):
             dist.broadcast_object_list(input_prompt, src=0)
         args.prompt = input_prompt[0]
         logging.info(f"Extended prompt: {args.prompt}")
+
+    if args.profile:
+        prof = torch.profiler.profile(
+            activities=[
+                torch.profiler.ProfilerActivity.CPU,
+                torch.profiler.ProfilerActivity.CUDA,
+            ],
+            schedule=None,
+            on_trace_ready=torch.profiler.tensorboard_trace_handler('./profile_logs'),
+            record_shapes=True,
+            profile_memory=False,
+            with_stack=False
+        )
+        prof.start()
 
     if "t2v" in args.task:
         logging.info("Creating WanT2V pipeline.")
@@ -544,6 +564,9 @@ def generate(args):
             seed=args.base_seed,
             offload_model=args.offload_model,
             verbose_pipeline=args.verbose_pipeline)
+
+    if args.profile:
+        prof.stop()
 
     if rank == 0:
         if args.save_file is None:
